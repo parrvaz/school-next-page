@@ -8,12 +8,30 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+}
+
+@font-face {
+  font-family: "Vazir";
+  src:
+    url("/fonts/Vazir.woff2") format("woff2"),
+    url("/fonts/Vazir.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Vazir";
+  src:
+    url("/fonts/Vazir-Bold.woff2") format("woff2"),
+    url("/fonts/Vazir-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
 }
 
 body {
@@ -24,6 +42,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  font-family: "Vazir", sans-serif;
 }
 
 @layer utilities {
