@@ -3,8 +3,10 @@ import { Field, Form, Formik } from "formik";
 import Input from "@/app/components/shared/form/input";
 import LoginForm from "@/app/forms/auth/loginForm";
 import Link from "next/link";
+import { useCookies } from "react-cookie";
 
 const Login: NextPage = () => {
+  const [cookeies, setCookie] = useCookies(["token"]);
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -24,7 +26,7 @@ const Login: NextPage = () => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <LoginForm />
+          <LoginForm setCookie={setCookie} />
         </div>
       </div>
     </div>
