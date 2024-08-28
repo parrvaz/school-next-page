@@ -43,6 +43,7 @@ body {
     )
     rgb(var(--background-start-rgb));
   font-family: "Vazir", sans-serif;
+  direction: rtl;
 }
 
 @layer utilities {

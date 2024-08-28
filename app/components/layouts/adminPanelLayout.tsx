@@ -1,6 +1,7 @@
 import useAuth from "@/app/hooks/useAuth";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
+import Sidebar from "../shared/sidbar";
 
 interface Props {
   children: ReactNode;
@@ -22,7 +23,9 @@ const AdminPanelLayout = ({ children }: Props) => {
     return <></>;
   }
   return (
-    <div className="min-h-screen bg-gray-50  w-full text-2x1 ">{children}</div>
+    <>
+      <Sidebar />
+    </>
   );
 };
 
