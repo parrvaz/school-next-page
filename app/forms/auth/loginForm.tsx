@@ -5,6 +5,8 @@ import { LoginFormValuesInterface } from "../../contracts/auth";
 import InnerLoginForm from "../../components/auth/InnerLoginForm";
 import callApi from "@/app/components/general/callApi";
 import ValidationError from "@/app/exceptions/validationError";
+import { storeLoginTokne } from "@/app/components/general/auth";
+import Router from "next/router";
 
 const LoginFormValidationSchema = yup.object().shape({
   phone: yup.number().required(),
@@ -12,7 +14,7 @@ const LoginFormValidationSchema = yup.object().shape({
 });
 
 interface LoginFormProps {
-  setCookie: any;
+  setToken: (token: string) => void;
 }
 
 const LoginForm = withFormik<LoginFormProps, LoginFormValuesInterface>({
@@ -26,11 +28,8 @@ const LoginForm = withFormik<LoginFormProps, LoginFormValuesInterface>({
     try {
       const res = await callApi().post("/login", values);
       if (res.status === 200) {
-        props.setCookie("token", res.data.token, {
-          maxAge: 3600 * 24 * 30,
-          domain: "localhost",
-          path: "/",
-        });
+        storeLoginTokne(res.data?.token);
+        Router.push("/panel");
       }
     } catch (error) {
       if (error instanceof ValidationError) {

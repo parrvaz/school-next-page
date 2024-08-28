@@ -9,3 +9,8 @@ export interface LoginFormValuesInterface {
   password: string;
   phone: string;
 }
+
+export interface PhoneVerifyFormValuesInterface {
+  code: string;
+  token: string;
+}
