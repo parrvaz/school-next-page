@@ -8,7 +8,7 @@ const fetcher = async (url: string) => {
 
   if (!cookie.get("shool_token")) {
     Router.push("/auth/login");
-    return <></>;
+    return;
   }
 
   const response = callApi().get("/user", {
