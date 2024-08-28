@@ -1,9 +1,15 @@
 import useSWR from "swr";
 import callApi from "../components/general/callApi";
 import Cookies from "universal-cookie";
+import Router from "next/router";
 
 const fetcher = async (url: string) => {
   const cookie = new Cookies();
+
+  if (!cookie.get("shool_token")) {
+    Router.push("/auth/login");
+    return <></>;
+  }
 
   const response = callApi().get("/user", {
     headers: {

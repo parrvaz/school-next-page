@@ -9,6 +9,9 @@ const storeLoginTokne = (token: string, days: number = 10) => {
   cookies.set("shool_token", token);
 };
 
-const removeLoginTokne = () => {};
+const removeLoginTokne = async () => {
+  let cookie = new Cookies();
+  cookie.remove("shool_token");
+};
 
 export { storeLoginTokne, removeLoginTokne };
