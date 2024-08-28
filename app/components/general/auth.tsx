@@ -1,13 +1,12 @@
 import Cookies from "universal-cookie";
 
-const storeLoginTokne = async (token: string, days: number = 10) => {
-  await fetch("/api/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ token }),
+const storeLoginTokne = (token: string, days: number = 10) => {
+  const cookies = new Cookies(null, {
+    path: "/",
+    // domain: ".semimgroup.ir",
+    maxAge: days * 24 * 3600,
   });
+  cookies.set("shool_token", token);
 };
 
 const removeLoginTokne = () => {};
