@@ -15,6 +15,7 @@ const UserPanelLayout = ({ children }: Props) => {
   if (error) {
     //show error
     router.push("/auth/login");
+    return <></>;
   }
 
   console.log("user", user);
