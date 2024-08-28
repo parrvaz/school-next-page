@@ -6,8 +6,10 @@ import Link from "next/link";
 import { useCookies } from "react-cookie";
 import { useAppDispatch } from "@/app/hooks";
 import { updatePhoneVerifyToken } from "@/app/store/auth";
+import { NextPageWithLayout } from "../_app";
+import GuestPanelLayout from "@/app/components/layouts/guestPanelLayout";
 
-const Login: NextPage = () => {
+const Login: NextPageWithLayout = () => {
   const dispatch = useAppDispatch();
   const setPhoneVerifyToken = (token: string) => {
     dispatch(updatePhoneVerifyToken(token));
@@ -38,5 +40,7 @@ const Login: NextPage = () => {
     </div>
   );
 };
+
+Login.getLayout = (page) => <GuestPanelLayout>{page}</GuestPanelLayout>;
 
 export default Login;

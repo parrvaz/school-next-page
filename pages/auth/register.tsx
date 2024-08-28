@@ -3,8 +3,10 @@ import { Field, Form, Formik } from "formik";
 import Input from "@/app/components/shared/form/input";
 import RegisterForm from "@/app/forms/auth/registerForm";
 import Link from "next/link";
+import { NextPageWithLayout } from "../_app";
+import GuestPanelLayout from "@/app/components/layouts/guestPanelLayout";
 
-const Register: NextPage = () => {
+const Register: NextPageWithLayout = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -30,5 +32,7 @@ const Register: NextPage = () => {
     </div>
   );
 };
+
+Register.getLayout = (page) => <GuestPanelLayout>{page}</GuestPanelLayout>;
 
 export default Register;

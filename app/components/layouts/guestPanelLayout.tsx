@@ -1,3 +1,5 @@
+import useAuth from "@/app/hooks/useAuth";
+import { useRouter } from "next/router";
 import { ReactNode } from "react";
 
 interface Props {
@@ -5,9 +7,16 @@ interface Props {
 }
 
 const GuestPanelLayout = ({ children }: Props) => {
-  return (
-    <div className="min-h-screen bg-gray-50  w-full text-2x1 ">{children}</div>
-  );
+  const router = useRouter();
+  const { user, error, loading } = useAuth();
+
+  if (user) {
+    router.push("/panel");
+    return <></>;
+  }
+
+  console.log("user", user);
+  return <div className="w-full text-2x1 ">{children}</div>;
 };
 
 export default GuestPanelLayout;

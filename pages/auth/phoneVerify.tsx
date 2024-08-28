@@ -8,8 +8,10 @@ import { useAppSelector } from "@/app/hooks";
 import { selectPhoneVerifyToken } from "@/app/store/auth";
 import { useEffect } from "react";
 import Router from "next/router";
+import { NextPageWithLayout } from "../_app";
+import GuestPanelLayout from "@/app/components/layouts/guestPanelLayout";
 
-const PhoneVerify: NextPage = () => {
+const PhoneVerify: NextPageWithLayout = () => {
   const [cookeies, setCookie] = useCookies(["token"]);
 
   const token = useAppSelector(selectPhoneVerifyToken);
@@ -44,5 +46,7 @@ const PhoneVerify: NextPage = () => {
     </div>
   );
 };
+
+PhoneVerify.getLayout = (page) => <GuestPanelLayout>{page}</GuestPanelLayout>;
 
 export default PhoneVerify;
