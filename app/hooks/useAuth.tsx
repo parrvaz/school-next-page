@@ -1,22 +1,25 @@
 import useSWR from "swr";
-import Cookies from "universal-cookie";
 import callApi from "../components/general/callApi";
+import Cookies from "universal-cookie";
 
-const useAuth = () => {
+const fetcher = async (url: string) => {
   const cookie = new Cookies();
 
-  const { data, error } = useSWR("user_me", () => {
-    callApi().get("/user", {
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + cookie.get("shool_token"),
-      },
-    });
+  const response = callApi().get("/user", {
+    headers: {
+      Accept: "application/json",
+      Authorization: "Bearer " + cookie.get("shool_token"),
+    },
   });
 
-  console.log("befor data");
-  console.log(data, error);
-  return { user: data, error, loading: !data && !error };
+  return response;
 };
+export default function useAuth() {
+  const { data, error } = useSWR("http://localhost:8000/api/user", fetcher);
 
-export default useAuth;
+  return {
+    user: data?.data?.data,
+    error,
+    loading: !error && !data,
+  };
+}

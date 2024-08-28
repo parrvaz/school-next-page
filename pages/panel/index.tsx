@@ -17,9 +17,7 @@ const Panel: NextPageWithLayout = () => {
     return <></>;
   }
 
-  console.log("user");
-
-  console.log("us", user);
+  console.log("user", user);
 
   return (
     <div>
