@@ -1,18 +1,13 @@
 // components/Sidebar.js
 
 import React, { useState } from "react";
-import {
-  HomeIcon,
-  UsersIcon,
-  ChartBarIcon,
-  CogIcon,
-  ChevronDownIcon,
-} from "@heroicons/react/24/outline";
+import { HomeIcon, UsersIcon, ChartBarIcon } from "@heroicons/react/24/outline";
 import ListItem from "./listItem";
 
 export default function Sidebar() {
+  const [selectedItem, setSelectedItem] = useState("dashboard");
+
   const [isOpen, setIsOpen] = useState({
-    dashboard: false,
     users: false,
     reports: false,
   });
@@ -20,6 +15,7 @@ export default function Sidebar() {
   const toggleDropdown = (section: string) => {
     setIsOpen((prev: any) => ({ ...prev, [section]: !prev[section] }));
   };
+  console.log(selectedItem);
 
   return (
     <div
@@ -37,6 +33,8 @@ export default function Sidebar() {
             url="/admin"
             icon={<HomeIcon className="h-6 w-6 ml-2 text-gray-600" />}
             hasSub={false}
+            setSelect={setSelectedItem}
+            selectedItem={selectedItem}
           />
           <ListItem
             name="users"
@@ -44,6 +42,8 @@ export default function Sidebar() {
             icon={<UsersIcon className="h-6 w-6 ml-2 text-gray-600" />}
             hasSub={true}
             isOpen={isOpen.users}
+            setSelect={setSelectedItem}
+            selectedItem={selectedItem}
             setOpen={() => toggleDropdown("users")}
             subList={[
               {
@@ -54,6 +54,28 @@ export default function Sidebar() {
               {
                 name: "gradeList",
                 lable: "لیست پایه ها",
+                url: "/admin/users/gradeList",
+              },
+            ]}
+          />
+          <ListItem
+            name="reports"
+            lable="گزارشات"
+            icon={<ChartBarIcon className="h-6 w-6 ml-2 text-gray-600" />}
+            hasSub={true}
+            isOpen={isOpen.reports}
+            setSelect={setSelectedItem}
+            selectedItem={selectedItem}
+            setOpen={() => toggleDropdown("reports")}
+            subList={[
+              {
+                name: "logs",
+                lable: "خطاها",
+                url: "/admin/users/userList",
+              },
+              {
+                name: "registers",
+                lable: "ثبت نام ها",
                 url: "/admin/users/gradeList",
               },
             ]}

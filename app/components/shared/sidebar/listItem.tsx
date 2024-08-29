@@ -1,6 +1,5 @@
 import { ChevronDownIcon, HomeIcon } from "@heroicons/react/20/solid";
-import { FC } from "react";
-import SubListItem from "./subListItem";
+import { FC, useState } from "react";
 import { SubListItemProps } from "@/app/contracts/auth";
 import Link from "next/link";
 
@@ -13,6 +12,8 @@ interface ListItemProps {
   setOpen?: any;
   icon?: any;
   subList?: SubListItemProps[];
+  setSelect?: any;
+  selectedItem?: string;
 }
 
 const ListItem: FC<ListItemProps> = ({
@@ -24,14 +25,19 @@ const ListItem: FC<ListItemProps> = ({
   setOpen,
   icon,
   subList,
+  setSelect,
+  selectedItem = "dashboard",
 }) => {
+  const handleClick = (name: string) => {
+    setSelect(name);
+  };
   return (
     <>
       <li id={name} className="mb-4">
         <Link
           href={url ?? ""}
-          className="flex justify-between items-center p-2 bg-white hover:bg-green-300 rounded-md transition-colors duration-300"
-          onClick={setOpen}
+          className={`flex justify-between items-center p-2 bg-white hover:bg-green-300 rounded-md transition-colors duration-300 ${selectedItem === name ? "bg-green-300" : "bg-white hover:bg-green-300"}`}
+          onClick={hasSub ? setOpen : () => handleClick(name)}
         >
           <span className="flex items-center justify-start w-full">
             {icon}
@@ -48,7 +54,15 @@ const ListItem: FC<ListItemProps> = ({
         {isOpen && (
           <ul className="mt-2 pr-4 space-y-2">
             {subList?.map((item) => (
-              <SubListItem name={item.name} lable={item.lable} url={item.url} />
+              <li id={item.name}>
+                <Link
+                  href={item.url}
+                  className={`block p-2 text-sm bg-white hover:bg-green-300 rounded-md text-right transition-colors duration-300 ${selectedItem === item.name ? "bg-green-300" : "bg-white hover:bg-green-300"}`}
+                  onClick={() => handleClick(item.name)}
+                >
+                  {item.lable}
+                </Link>
+              </li>
             ))}
           </ul>
         )}
