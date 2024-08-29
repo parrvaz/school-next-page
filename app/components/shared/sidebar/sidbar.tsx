@@ -34,6 +34,7 @@ export default function Sidebar() {
           <ListItem
             name="dashboard"
             lable="داشبورد"
+            url="/admin"
             icon={<HomeIcon className="h-6 w-6 ml-2 text-gray-600" />}
             hasSub={false}
           />
@@ -45,8 +46,16 @@ export default function Sidebar() {
             isOpen={isOpen.users}
             setOpen={() => toggleDropdown("users")}
             subList={[
-              { name: "userList", lable: "لیست کاربران" },
-              { name: "gradeList", lable: "لیست پایه ها" },
+              {
+                name: "userList",
+                lable: "لیست کاربران",
+                url: "/admin/users/userList",
+              },
+              {
+                name: "gradeList",
+                lable: "لیست پایه ها",
+                url: "/admin/users/gradeList",
+              },
             ]}
           />
         </ul>

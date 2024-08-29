@@ -2,6 +2,7 @@ import useAuth from "@/app/hooks/useAuth";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import Sidebar from "../shared/sidebar/sidbar";
+import PanelLayout from "./panelLayout";
 
 interface Props {
   children: ReactNode;
@@ -24,7 +25,7 @@ const AdminPanelLayout = ({ children }: Props) => {
   }
   return (
     <>
-      <Sidebar />
+      <PanelLayout>{children}</PanelLayout>
     </>
   );
 };

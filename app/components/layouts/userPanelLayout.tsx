@@ -1,6 +1,7 @@
 import useAuth from "@/app/hooks/useAuth";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
+import PanelLayout from "./panelLayout";
 
 interface Props {
   children: ReactNode;
@@ -19,7 +20,11 @@ const UserPanelLayout = ({ children }: Props) => {
   }
 
   console.log("user", user);
-  return <div className="w-full text-2x1">{children}</div>;
+  return (
+    <>
+      <PanelLayout>{children}</PanelLayout>
+    </>
+  );
 };
 
 export default UserPanelLayout;

@@ -18,5 +18,5 @@ export interface PhoneVerifyFormValuesInterface {
 export interface SubListItemProps {
   name: string;
   lable: string;
-  subListItemClassName?: string;
+  url: string;
 }

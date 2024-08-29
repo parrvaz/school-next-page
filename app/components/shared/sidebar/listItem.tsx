@@ -2,12 +2,14 @@ import { ChevronDownIcon, HomeIcon } from "@heroicons/react/20/solid";
 import { FC } from "react";
 import SubListItem from "./subListItem";
 import { SubListItemProps } from "@/app/contracts/auth";
+import Link from "next/link";
 
 interface ListItemProps {
   name: string;
   lable: string;
   hasSub: boolean;
   isOpen?: boolean;
+  url?: string;
   setOpen?: any;
   icon?: any;
   subList?: SubListItemProps[];
@@ -18,6 +20,7 @@ const ListItem: FC<ListItemProps> = ({
   lable,
   hasSub,
   isOpen = false,
+  url,
   setOpen,
   icon,
   subList,
@@ -25,8 +28,8 @@ const ListItem: FC<ListItemProps> = ({
   return (
     <>
       <li id={name} className="mb-4">
-        <a
-          href="#"
+        <Link
+          href={url ?? ""}
           className="flex justify-between items-center p-2 bg-white hover:bg-green-300 rounded-md transition-colors duration-300"
           onClick={setOpen}
         >
@@ -41,11 +44,11 @@ const ListItem: FC<ListItemProps> = ({
               }`}
             />
           )}
-        </a>
+        </Link>
         {isOpen && (
           <ul className="mt-2 pr-4 space-y-2">
             {subList?.map((item) => (
-              <SubListItem name={item.name} lable={item.lable} />
+              <SubListItem name={item.name} lable={item.lable} url={item.url} />
             ))}
           </ul>
         )}
