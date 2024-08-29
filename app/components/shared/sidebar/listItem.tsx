@@ -1,33 +1,24 @@
 import { ChevronDownIcon, HomeIcon } from "@heroicons/react/20/solid";
 import { FC, useState } from "react";
-import { SubListItemProps } from "@/app/contracts/auth";
+import { ListItemProps } from "@/app/contracts/auth";
 import Link from "next/link";
-
-interface ListItemProps {
-  name: string;
-  lable: string;
-  hasSub: boolean;
-  isOpen?: boolean;
-  url?: string;
-  setOpen?: any;
-  icon?: any;
-  subList?: SubListItemProps[];
-  setSelect?: any;
-  selectedItem?: string;
-}
 
 const ListItem: FC<ListItemProps> = ({
   name,
   lable,
   hasSub,
-  isOpen = false,
   url,
-  setOpen,
   icon,
   subList,
   setSelect,
   selectedItem = "dashboard",
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   const handleClick = (name: string) => {
     setSelect(name);
   };
@@ -37,7 +28,7 @@ const ListItem: FC<ListItemProps> = ({
         <Link
           href={url ?? ""}
           className={`flex justify-between items-center p-2 bg-white hover:bg-green-300 rounded-md transition-colors duration-300 ${selectedItem === name ? "bg-green-300" : "bg-white hover:bg-green-300"}`}
-          onClick={hasSub ? setOpen : () => handleClick(name)}
+          onClick={hasSub ? () => toggleDropdown() : () => handleClick(name)}
         >
           <span className="flex items-center justify-start w-full">
             {icon}

@@ -20,3 +20,20 @@ export interface SubListItemProps {
   lable: string;
   url: string;
 }
+
+export interface ListItemProps {
+  name: string;
+  lable: string;
+  hasSub: boolean;
+  isOpen?: boolean;
+  url?: string;
+  setOpen?: any;
+  icon?: any;
+  subList?: SubListItemProps[];
+  setSelect?: any;
+  selectedItem?: string;
+}
+
+export interface SidebarProps {
+  data: ListItemProps[];
+}
