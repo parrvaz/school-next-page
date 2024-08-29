@@ -9,7 +9,7 @@ import {
   ChevronDownIcon,
 } from "@heroicons/react/24/outline";
 
-const Sidebar = () => {
+export default function Sidebar() {
   const [isOpen, setIsOpen] = useState({
     dashboard: false,
     users: false,
@@ -26,7 +26,7 @@ const Sidebar = () => {
       dir="rtl"
     >
       <div className="flex items-center justify-center h-20 bg-green-200">
-        <h1 className="text-2xl font-bold">حسابفا</h1>
+        <h1 className="text-2xl font-bold">سمیم</h1>
       </div>
       <div className="flex-1 overflow-y-auto">
         <ul className="p-4">
@@ -154,6 +154,4 @@ const Sidebar = () => {
       </div>
     </div>
   );
-};
-
-export default Sidebar;
+}

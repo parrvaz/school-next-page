@@ -1,7 +1,7 @@
 import useAuth from "@/app/hooks/useAuth";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
-import Sidebar from "../shared/sidbar";
+import Sidebar from "../shared/sidebar/sidbar";
 
 interface Props {
   children: ReactNode;
