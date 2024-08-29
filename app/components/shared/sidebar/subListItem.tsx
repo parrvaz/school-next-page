@@ -1,10 +1,5 @@
+import { SubListItemProps } from "@/app/contracts/auth";
 import { FC } from "react";
-
-interface SubListItemProps {
-  name: string;
-  lable: string;
-  subListItemClassName?: string;
-}
 
 const SubListItem: FC<SubListItemProps> = ({
   name,

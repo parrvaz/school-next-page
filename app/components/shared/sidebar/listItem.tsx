@@ -1,6 +1,7 @@
 import { ChevronDownIcon, HomeIcon } from "@heroicons/react/20/solid";
 import { FC } from "react";
 import SubListItem from "./subListItem";
+import { SubListItemProps } from "@/app/contracts/auth";
 
 interface ListItemProps {
   name: string;
@@ -9,7 +10,7 @@ interface ListItemProps {
   isOpen?: boolean;
   setOpen?: any;
   icon?: any;
-  subList: [any];
+  subList?: SubListItemProps[];
 }
 
 const ListItem: FC<ListItemProps> = ({
@@ -43,7 +44,7 @@ const ListItem: FC<ListItemProps> = ({
         </a>
         {isOpen && (
           <ul className="mt-2 pr-4 space-y-2">
-            {subList.map((item) => (
+            {subList?.map((item) => (
               <SubListItem name={item.name} lable={item.lable} />
             ))}
           </ul>
