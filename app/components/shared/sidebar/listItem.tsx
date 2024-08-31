@@ -11,7 +11,7 @@ const ListItem: FC<ListItemProps> = ({
   icon,
   subList,
   setSelect,
-  selectedItem = "dashboard",
+  selectedItem,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -22,9 +22,13 @@ const ListItem: FC<ListItemProps> = ({
   const handleClick = (name: string) => {
     setSelect(name);
   };
+
+  console.log("selected:", selectedItem);
+  console.log("name:", name);
+
   return (
     <>
-      <li id={name} className="mb-4">
+      <li key={name} className="mb-4">
         <Link
           href={url ?? ""}
           className={`flex justify-between items-center p-2 bg-white hover:bg-green-300 rounded-md transition-colors duration-300 ${selectedItem === name ? "bg-green-300" : "bg-white hover:bg-green-300"}`}

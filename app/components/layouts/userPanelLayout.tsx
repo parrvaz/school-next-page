@@ -5,23 +5,17 @@ import PanelLayout from "./panelLayout";
 import { SidebarProps } from "@/app/contracts/auth";
 import {
   BookOpenIcon,
-  BriefcaseIcon,
-  BuildingLibraryIcon,
-  BuildingOffice2Icon,
   BuildingOfficeIcon,
   CalendarDateRangeIcon,
   ChartBarIcon,
   ChatBubbleBottomCenterIcon,
-  CheckCircleIcon,
   ClipboardDocumentListIcon,
   DocumentCheckIcon,
   HomeIcon,
   PencilIcon,
   UserCircleIcon,
   UserGroupIcon,
-  UsersIcon,
 } from "@heroicons/react/24/outline";
-import { GiOpenBook } from "react-icons/gi";
 
 interface Props {
   children: ReactNode;
@@ -39,7 +33,7 @@ const sidebarData = {
     {
       name: "allExamList",
       lable: "لیست امتحانات",
-      url: "/panel/#",
+      url: "/panel",
       icon: (
         <ClipboardDocumentListIcon className="h-6 w-6 ml-2 text-gray-600" />
       ),
@@ -103,7 +97,7 @@ const sidebarData = {
     },
     {
       name: "/panel/teachers",
-      lable: "برنامه مطالعاتی",
+      lable: "معلم ها",
       icon: <UserCircleIcon className="h-6 w-6 ml-2 text-gray-600" />,
       hasSub: true,
       subList: [
