@@ -3,16 +3,182 @@ import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import PanelLayout from "./panelLayout";
 import { SidebarProps } from "@/app/contracts/auth";
+import {
+  BookOpenIcon,
+  BriefcaseIcon,
+  BuildingLibraryIcon,
+  BuildingOffice2Icon,
+  BuildingOfficeIcon,
+  CalendarDateRangeIcon,
+  ChartBarIcon,
+  ChatBubbleBottomCenterIcon,
+  CheckCircleIcon,
+  ClipboardDocumentListIcon,
+  DocumentCheckIcon,
+  HomeIcon,
+  PencilIcon,
+  UserCircleIcon,
+  UserGroupIcon,
+  UsersIcon,
+} from "@heroicons/react/24/outline";
+import { GiOpenBook } from "react-icons/gi";
 
 interface Props {
   children: ReactNode;
 }
 
+const sidebarData = {
+  data: [
+    {
+      name: "dashboard",
+      lable: "داشبورد",
+      url: "/panel",
+      icon: <HomeIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: false,
+    },
+    {
+      name: "allExamList",
+      lable: "لیست امتحانات",
+      url: "/panel/#",
+      icon: (
+        <ClipboardDocumentListIcon className="h-6 w-6 ml-2 text-gray-600" />
+      ),
+      hasSub: false,
+    },
+    {
+      name: "/panel/exams/store",
+      lable: "ثبت امتحان کتبی",
+      icon: <PencilIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: false,
+    },
+    {
+      name: "/panel/classScores/store",
+      lable: "ثبت پرسش شفاهی",
+      icon: (
+        <ChatBubbleBottomCenterIcon className="h-6 w-6 ml-2 text-gray-600" />
+      ),
+      hasSub: false,
+    },
+    {
+      name: "/panel/tests/store",
+      lable: "ثبت آزمون تستی",
+      icon: <DocumentCheckIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: false,
+    },
+    {
+      name: "/panel/classes",
+      lable: "کلاس ها",
+      icon: <BuildingOfficeIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: true,
+      subList: [
+        {
+          name: "/panel/classes/show",
+          lable: "لیست کلاس ها",
+          url: "/panel/classes/show",
+        },
+        {
+          name: "/panel/classes/store",
+          lable: "ثبت کلاس جدید",
+          url: "/panel/classes/store",
+        },
+      ],
+    },
+    {
+      name: "/panel/students",
+      lable: "دانش آموزان",
+      icon: <UserGroupIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: true,
+      subList: [
+        {
+          name: "/panel/students/show",
+          lable: "لیست دانش آموزان",
+          url: "/panel/classes/show",
+        },
+        {
+          name: "/panel/students/store",
+          lable: "ثبت دانش آموز جدید",
+          url: "/panel/classes/store",
+        },
+      ],
+    },
+    {
+      name: "/panel/teachers",
+      lable: "برنامه مطالعاتی",
+      icon: <UserCircleIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: true,
+      subList: [
+        {
+          name: "/panel/teachers/show",
+          lable: "لیست معلمان",
+          url: "/panel/classes/show",
+        },
+        {
+          name: "/panel/teachers/store",
+          lable: "ثبت معلم جدید",
+          url: "/panel/classes/store",
+        },
+      ],
+    },
+    {
+      name: "/panel/courses",
+      lable: "درس ها",
+      icon: <BookOpenIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: true,
+      subList: [
+        {
+          name: "courseAssigne",
+          lable: "تخصیص درس",
+          url: "/panel/courseAssigne",
+        },
+        {
+          name: "/panel/courses/show",
+          lable: "لیست درس ها",
+          url: "/panel//panel/courses/show",
+        },
+      ],
+    },
+    {
+      name: "/panel/plans",
+      lable: "برنامه مطالعاتی",
+      icon: <CalendarDateRangeIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: true,
+      subList: [
+        {
+          name: "/panel/plans/show",
+          lable: "لیست برنامه مطالعاتی",
+          url: "/panel/classes/show",
+        },
+        {
+          name: "/panel/plans/store",
+          lable: "ثبت برنامه مطالعاتی جدید",
+          url: "/panel/classes/store",
+        },
+        {
+          name: "/panel/plans/students/show",
+          lable: "برنامه مطالعاتی دانش آموزان",
+          url: "/panel/classes/show",
+        },
+        {
+          name: "/panel/plans/students/store",
+          lable: "ثبت برنامه دانش آموز",
+          url: "/panel/classes/store",
+        },
+      ],
+    },
+    {
+      name: "reports",
+      lable: "گزارشات",
+      url: "/panel/reports",
+      icon: <ChartBarIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: false,
+    },
+  ],
+};
+
 const UserPanelLayout = ({ children }: Props) => {
   const router = useRouter();
   const { user, error, loading } = useAuth();
 
-  const sidebarData = { data: [] };
   if (loading) return <div>Loading...</div>;
 
   if (error) {
