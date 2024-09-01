@@ -4,25 +4,27 @@ import UserPanelLayout from "@/app/components/layouts/userPanelLayout";
 import Table from "@/app/components/shared/table/table";
 import callApi from "@/app/components/general/callApi";
 import Cookies from "universal-cookie";
+import useSWR from "swr";
+import { GetDataApi } from "@/app/components/general/getData";
 
 const ClassShow: NextPageWithLayout = () => {
-  const data = [
-    { id: 1, name: "علی رضایی", age: 17, grade: "یازدهم" },
-    { id: 2, name: "زهرا محمدی", age: 16, grade: "دهم" },
-    { id: 3, name: "حسین احمدی", age: 18, grade: "دوازدهم" },
-  ];
+  const { data, error } = useSWR("/classrooms/show", GetDataApi);
+
+  const classrooms = data?.data?.data;
+
+  console.log(classrooms);
 
   const columns = [
     { header: "شناسه", accessor: "id" },
-    { header: "نام", accessor: "name" },
-    { header: "سن", accessor: "age" },
-    { header: "پایه", accessor: "grade" },
+    { header: "نام", accessor: "title" },
+    { header: "شماره", accessor: "number" },
+    { header: "رشته", accessor: "field" },
   ];
 
   return (
     <>
       <h1 className="text-3xl font-bold mb-4">لیست دانش‌آموزان</h1>
-      <Table data={data} columns={columns} />
+      <Table data={classrooms} columns={columns} />
     </>
   );
 };
