@@ -181,7 +181,6 @@ const UserPanelLayout = ({ children }: Props) => {
     return <></>;
   }
 
-  console.log("user", user);
   return (
     <>
       <PanelLayout sidebarData={sidebarData}>{children}</PanelLayout>

@@ -28,7 +28,7 @@ const ListItem: FC<ListItemProps> = ({
       <li key={name} className="mb-4">
         <Link
           href={url ?? ""}
-          className={`flex justify-between items-center p-2 bg-white hover:bg-green-300 rounded-md transition-colors duration-300 ${selectedItem === name ? "bg-green-300" : "bg-white hover:bg-green-300"}`}
+          className={`flex justify-between items-center p-2  hover:bg-green-300 rounded-md transition-colors duration-300 ${selectedItem === name ? "bg-green-300" : "bg-white hover:bg-green-300"} `}
           onClick={hasSub ? () => toggleDropdown() : () => handleClick(name)}
         >
           <span className="flex items-center justify-start w-full">
@@ -49,7 +49,7 @@ const ListItem: FC<ListItemProps> = ({
               <li id={item.name}>
                 <Link
                   href={item.url}
-                  className={`block p-2 text-sm bg-white hover:bg-green-300 rounded-md text-right transition-colors duration-300 ${selectedItem === item.name ? "bg-green-300" : "bg-white hover:bg-green-300"}`}
+                  className={`block p-2 text-sm hover:bg-green-300 rounded-md text-right transition-colors duration-300 ${selectedItem === item.name ? "bg-green-300" : "bg-white hover:bg-green-300"}`}
                   onClick={() => handleClick(item.name)}
                 >
                   {item.lable}

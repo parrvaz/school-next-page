@@ -3,8 +3,6 @@ import { NextPageWithLayout } from "../_app";
 import UserPanelLayout from "@/app/components/layouts/userPanelLayout";
 
 const Panel: NextPageWithLayout = () => {
-  console.log("panel");
-
   return <div></div>;
 };
 
