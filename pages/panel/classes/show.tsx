@@ -19,6 +19,7 @@ const ClassShow: NextPageWithLayout = () => {
     { header: "نام", accessor: "title" },
     { header: "شماره", accessor: "number" },
     { header: "رشته", accessor: "field" },
+    { header: "طبقه", accessor: "floor" },
   ];
 
   return (

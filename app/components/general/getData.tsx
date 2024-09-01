@@ -2,11 +2,7 @@ import { error } from "console";
 import callApi from "./callApi";
 import Cookies from "universal-cookie";
 
-export async function GetDataApi({
-  url = "/classrooms/show",
-  page = 1,
-  per_page = 15,
-}) {
+export async function GetDataApi({ url = "", page = 1, per_page = 15 }) {
   const cookie = new Cookies();
 
   let res = await callApi().get(`${url}?page=${page}&perPage=${per_page}`, {
