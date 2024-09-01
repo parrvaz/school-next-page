@@ -10,7 +10,7 @@ const Sidebar: FC<SidebarProps> = ({ data }) => {
 
   return (
     <div
-      className="h-screen w-64 bg-white text-gray-800 flex flex-col"
+      className="hidden md:block h-screen w-64 bg-white text-gray-800 flex flex-col"
       dir="rtl"
     >
       <div className="flex-1 overflow-y-auto">

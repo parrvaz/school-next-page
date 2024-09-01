@@ -16,6 +16,16 @@
   }
 }
 
+@media (max-width: 640px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    flex-direction: row;
+    top: 0;
+    left: 0;
+  }
+}
+
 @font-face {
   font-family: "Vazir";
   src:
