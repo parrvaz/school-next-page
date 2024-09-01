@@ -36,16 +36,18 @@ const Table: React.FC<TableProps> = ({ data, columns }) => {
                   {row[column.accessor]}
                 </td>
               ))}
-              <td className="py-2 px-4 border-b border-gray-200 text-right flex justify-end">
-                <button className="text-red-500 hover:text-red-700 mx-1">
-                  <TrashIcon className="h-5 w-5" />
-                </button>
-                <button className="text-blue-500 hover:text-blue-700 mx-1">
-                  <PencilIcon className="h-5 w-5" />
-                </button>
-                <button className="text-green-500 hover:text-green-700 mx-1">
-                  <EyeIcon className="h-5 w-5" />
-                </button>
+              <td className="py-2 px-4 border-b border-gray-200 text-right">
+                <div className="flex items-center justify-end space-x-2">
+                  <button className="text-green-500 hover:text-green-700">
+                    <EyeIcon className="h-5 w-5" />
+                  </button>
+                  <button className="text-blue-500 hover:text-blue-700">
+                    <PencilIcon className="h-5 w-5" />
+                  </button>
+                  <button className="text-red-500 hover:text-red-700">
+                    <TrashIcon className="h-5 w-5" />
+                  </button>
+                </div>
               </td>
             </tr>
           ))}
