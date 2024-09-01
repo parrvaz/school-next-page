@@ -2,6 +2,8 @@ import { NextPageWithLayout } from "@/pages/_app";
 import Panel from "..";
 import UserPanelLayout from "@/app/components/layouts/userPanelLayout";
 import Table from "@/app/components/shared/table/table";
+import callApi from "@/app/components/general/callApi";
+import Cookies from "universal-cookie";
 
 const ClassShow: NextPageWithLayout = () => {
   const data = [

@@ -23,9 +23,6 @@ const ListItem: FC<ListItemProps> = ({
     setSelect(name);
   };
 
-  console.log("selected:", selectedItem);
-  console.log("name:", name);
-
   return (
     <>
       <li key={name} className="mb-4">
