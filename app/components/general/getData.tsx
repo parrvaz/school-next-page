@@ -17,5 +17,5 @@ export async function GetDataApi({
     },
   });
 
-  return { data: res?.data?.data, error: undefined };
+  return { data: res?.data, error: undefined };
 }

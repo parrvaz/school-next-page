@@ -11,7 +11,9 @@ const ClassShow: NextPageWithLayout = () => {
   const { data, error } = useSWR({ url: "/students/show" }, GetDataApi);
 
   if (!data && !error) return <div>Loading...</div>;
-  const students = data?.data;
+
+  const paginate = data?.data?.meta;
+  const students = data?.data?.data;
 
   const columns = [
     { header: "نام", accessor: "name" },

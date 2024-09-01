@@ -1,5 +1,6 @@
 import React from "react";
 import { TrashIcon, PencilIcon, EyeIcon } from "@heroicons/react/16/solid";
+import Pagination from "./pagination";
 
 interface TableProps {
   data: { [key: string]: any }[];
@@ -59,6 +60,7 @@ const Table: React.FC<TableProps> = ({ data, columns }) => {
           ))}
         </tbody>
       </table>
+      <Pagination currentPage={1} totalPages={5} onPageChange={() => {}} />
     </div>
   );
 };
