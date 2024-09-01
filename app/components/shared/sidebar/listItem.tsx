@@ -46,7 +46,7 @@ const ListItem: FC<ListItemProps> = ({
         {isOpen && (
           <ul className="mt-2 pr-4 space-y-2">
             {subList?.map((item) => (
-              <li id={item.name}>
+              <li key={item.name} id={item.name}>
                 <Link
                   href={item.url}
                   className={`block p-2 text-sm hover:bg-green-300 rounded-md text-right transition-colors duration-300 ${selectedItem === item.name ? "bg-green-300" : "bg-white hover:bg-green-300"}`}

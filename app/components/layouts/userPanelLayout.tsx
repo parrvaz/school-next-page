@@ -86,12 +86,12 @@ const sidebarData = {
         {
           name: "/panel/students/show",
           lable: "لیست دانش آموزان",
-          url: "/panel/classes/show",
+          url: "/panel/students/show",
         },
         {
           name: "/panel/students/store",
           lable: "ثبت دانش آموز جدید",
-          url: "/panel/classes/store",
+          url: "/panel/students/store",
         },
       ],
     },

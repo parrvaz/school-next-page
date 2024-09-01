@@ -8,25 +8,22 @@ import useSWR from "swr";
 import { GetDataApi } from "@/app/components/general/getData";
 
 const ClassShow: NextPageWithLayout = () => {
-  const { data, error } = useSWR(
-    { url: "/classrooms/show", page: 1, per_page: 20 },
-    GetDataApi
-  );
+  const { data, error } = useSWR({ url: "/students/show" }, GetDataApi);
 
   if (!data && !error) return <div>Loading...</div>;
-  const classrooms = data?.data;
+  const students = data?.data;
 
   const columns = [
-    { header: "نام", accessor: "title" },
-    { header: "شماره", accessor: "number" },
-    { header: "رشته", accessor: "field" },
-    { header: "طبقه", accessor: "floor" },
+    { header: "نام", accessor: "name" },
+    { header: "کلاس", accessor: "classroom" },
+    { header: "کد ملی", accessor: "nationalId" },
+    { header: "تلفن", accessor: "phone" },
   ];
 
   return (
     <>
-      <h1 className="text-3xl font-bold mb-4">لیست کلاس ها</h1>
-      <Table data={classrooms} columns={columns} />
+      <h1 className="text-3xl font-bold mb-4">لیست دانش آموزان</h1>
+      <Table data={students} columns={columns} />
     </>
   );
 };
