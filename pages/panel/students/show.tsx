@@ -13,6 +13,8 @@ const ClassShow: NextPageWithLayout = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
+  console.log(paginate);
+
   const columns = [
     { header: "نام", accessor: "name" },
     { header: "کلاس", accessor: "classroom" },
@@ -23,7 +25,7 @@ const ClassShow: NextPageWithLayout = () => {
   return (
     <>
       <h1 className="text-3xl font-bold mb-4">لیست دانش آموزان</h1>
-      <Table data={data} columns={columns} />
+      <Table data={data} columns={columns} paginate={paginate} />
     </>
   );
 };

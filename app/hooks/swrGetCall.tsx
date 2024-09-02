@@ -3,7 +3,6 @@ import Cookies from "universal-cookie";
 import callApi from "../components/general/ApiCalls/callApi";
 
 export async function fetcherMethode(url: string, page = 1, per_page = 15) {
-  // فرض کنید این تابع یک درخواست GET به API ارسال می‌کند
   const cookie = new Cookies();
 
   let response = await callApi().get(
