@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import callApi from "../components/general/callApi";
+import callApi from "../components/general/ApiCalls/callApi";
 import Cookies from "universal-cookie";
 import Router from "next/router";
 

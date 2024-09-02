@@ -3,7 +3,7 @@ import { Form, FormikProps, withFormik } from "formik";
 import * as yup from "yup";
 import { RegisterFormValuesInterface } from "../../contracts/auth";
 import InnerRegisterForm from "../../components/auth/InnerRegisterForm";
-import callApi from "@/app/components/general/callApi";
+import callApi from "@/app/components/general/ApiCalls/callApi";
 import Router from "next/router";
 
 const registerFormValidationSchema = yup.object().shape({

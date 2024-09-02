@@ -3,7 +3,7 @@ import { Form, FormikProps, withFormik } from "formik";
 import * as yup from "yup";
 import { LoginFormValuesInterface } from "../../contracts/auth";
 import InnerLoginForm from "../../components/auth/InnerLoginForm";
-import callApi from "@/app/components/general/callApi";
+import callApi from "@/app/components/general/ApiCalls/callApi";
 import ValidationError from "@/app/exceptions/validationError";
 import { storeLoginTokne } from "@/app/components/general/auth";
 import Router from "next/router";

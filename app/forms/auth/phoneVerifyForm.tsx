@@ -3,7 +3,7 @@ import { Form, FormikProps, withFormik } from "formik";
 import * as yup from "yup";
 import { PhoneVerifyFormValuesInterface } from "../../contracts/auth";
 import InnerPhoneVerifyForm from "../../components/auth/InnerPhoneVerifyForm";
-import callApi from "@/app/components/general/callApi";
+import callApi from "@/app/components/general/ApiCalls/callApi";
 import ValidationError from "@/app/exceptions/validationError";
 
 const phoneVerifyFormValidationSchema = yup.object().shape({

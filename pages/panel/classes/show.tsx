@@ -2,19 +2,18 @@ import { NextPageWithLayout } from "@/pages/_app";
 import Panel from "..";
 import UserPanelLayout from "@/app/components/layouts/userPanelLayout";
 import Table from "@/app/components/shared/table/table";
-import callApi from "@/app/components/general/callApi";
+import callApi from "@/app/components/general/ApiCalls/callApi";
 import Cookies from "universal-cookie";
 import useSWR from "swr";
-import { GetDataApi } from "@/app/components/general/getData";
+import useAuth from "@/app/hooks/useAuth";
+import { SWRGetCall } from "@/app/hooks/swrGetCall";
 
 const ClassShow: NextPageWithLayout = () => {
-  const { data, error } = useSWR(
-    { url: "/classrooms/show", page: 1, per_page: 20 },
-    GetDataApi
-  );
+  const { data, paginate, error, isLoading } = SWRGetCall("/classrooms/show");
 
-  if (!data && !error) return <div>Loading...</div>;
-  const classrooms = data?.data;
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+  console.log(data);
 
   const columns = [
     { header: "نام", accessor: "title" },
@@ -26,7 +25,7 @@ const ClassShow: NextPageWithLayout = () => {
   return (
     <>
       <h1 className="text-3xl font-bold mb-4">لیست کلاس ها</h1>
-      <Table data={classrooms} columns={columns} />
+      <Table data={data} columns={columns} />
     </>
   );
 };
