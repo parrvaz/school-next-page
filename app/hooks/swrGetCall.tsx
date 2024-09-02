@@ -2,11 +2,11 @@ import useSWR from "swr";
 import Cookies from "universal-cookie";
 import callApi from "../components/general/ApiCalls/callApi";
 
-export async function fetcherMethode(url: string, page = 1, per_page = 15) {
+export async function fetcherMethode(props: any) {
   const cookie = new Cookies();
 
   let response = await callApi().get(
-    `${url}?page=${page}&perPage=${per_page}`,
+    `${props.url}?page=${props.page ?? 1}&perPage=${props.per_page ?? 15}`,
     {
       headers: {
         Accept: "application/json",
@@ -18,8 +18,8 @@ export async function fetcherMethode(url: string, page = 1, per_page = 15) {
   return await response;
 }
 
-export function SWRGetCall(url: string) {
-  const { data, error } = useSWR(url, fetcherMethode);
+export function SWRGetCall(url: string, page: number = 1) {
+  const { data, error } = useSWR({ url, page }, fetcherMethode);
 
   return {
     data: data?.data?.data || null,

@@ -13,6 +13,8 @@ const ClassShow: NextPageWithLayout = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
+  const onPageChangeHandler = (page: number) =>
+    SWRGetCall("/students/show", page);
   console.log(paginate);
 
   const columns = [
@@ -25,7 +27,12 @@ const ClassShow: NextPageWithLayout = () => {
   return (
     <>
       <h1 className="text-3xl font-bold mb-4">لیست دانش آموزان</h1>
-      <Table data={data} columns={columns} paginate={paginate} />
+      <Table
+        data={data}
+        columns={columns}
+        paginate={paginate}
+        onPaginateHandler={onPageChangeHandler}
+      />
     </>
   );
 };

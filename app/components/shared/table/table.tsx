@@ -1,14 +1,24 @@
 import React from "react";
 import { TrashIcon, PencilIcon, EyeIcon } from "@heroicons/react/16/solid";
 import Pagination from "./pagination";
+import { SWRGetCall } from "@/app/hooks/swrGetCall";
 
 interface TableProps {
   data: { [key: string]: any }[];
   columns: { header: string; accessor: string }[];
   paginate?: { [key: string]: any };
+  onPaginateHandler?: (page: number) => void;
 }
 
-const Table: React.FC<TableProps> = ({ data, columns, paginate }) => {
+const Table: React.FC<TableProps> = ({
+  data,
+  columns,
+  paginate,
+  onPaginateHandler = () => {},
+}) => {
+  const onPageChangeHandler = (page: number) =>
+    SWRGetCall("/students/show", page);
+  console.log(paginate);
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white border border-gray-200">
@@ -65,7 +75,7 @@ const Table: React.FC<TableProps> = ({ data, columns, paginate }) => {
         <Pagination
           currentPage={paginate?.current_page}
           totalPages={paginate?.last_page}
-          onPageChange={() => {}}
+          onPageChange={onPageChangeHandler}
         />
       )}
     </div>
