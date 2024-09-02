@@ -1,32 +1,20 @@
 import React from "react";
 import { TrashIcon, PencilIcon, EyeIcon } from "@heroicons/react/16/solid";
-import Pagination from "./pagination";
-import { SWRGetCall } from "@/app/hooks/swrGetCall";
 
 interface TableProps {
   data: { [key: string]: any }[];
   columns: { header: string; accessor: string }[];
-  paginate?: { [key: string]: any };
-  onPaginateHandler?: (page: number) => void;
 }
 
-const Table: React.FC<TableProps> = ({
-  data,
-  columns,
-  paginate,
-  onPaginateHandler = () => {},
-}) => {
-  const onPageChangeHandler = (page: number) =>
-    SWRGetCall("/students/show", page);
-  console.log(paginate);
+const Table: React.FC<TableProps> = ({ data, columns }) => {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white border border-gray-200">
         <thead className="bg-gray-100">
           <tr>
-            <th className="py-2 px-4 text-gray-600 border-b border-gray-200 text-right">
+            {/* <th className="py-2 px-4 text-gray-600 border-b border-gray-200 text-right">
               #
-            </th>
+            </th> */}
             {columns.map((column) => (
               <th
                 key={column.accessor}
@@ -43,9 +31,9 @@ const Table: React.FC<TableProps> = ({
         <tbody>
           {data.map((row, rowIndex) => (
             <tr key={rowIndex} className="hover:bg-green-100">
-              <td className="py-2 px-4 border-b border-gray-200 text-right text-gray-700">
+              {/* <td className="py-2 px-4 border-b border-gray-200 text-right text-gray-700">
                 {rowIndex + 1}
-              </td>
+              </td> */}
               {columns.map((column) => (
                 <td
                   key={column.accessor}
@@ -71,13 +59,6 @@ const Table: React.FC<TableProps> = ({
           ))}
         </tbody>
       </table>
-      {paginate && (
-        <Pagination
-          currentPage={paginate?.current_page}
-          totalPages={paginate?.last_page}
-          onPageChange={onPageChangeHandler}
-        />
-      )}
     </div>
   );
 };
