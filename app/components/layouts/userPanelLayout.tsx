@@ -127,7 +127,7 @@ const sidebarData = {
         {
           name: "/panel/courses/show",
           lable: "لیست درس ها",
-          url: "/panel//panel/courses/show",
+          url: "/panel/courses/show",
         },
       ],
     },
