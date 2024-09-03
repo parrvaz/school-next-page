@@ -5,14 +5,12 @@ import { SWRGetCall } from "@/app/hooks/swrGetCall";
 import Pagination from "@/app/components/shared/table/pagination";
 import { useState } from "react";
 
-const StudentShow: NextPageWithLayout = () => {
+const ExamShow: NextPageWithLayout = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, paginate, error, isLoading } = SWRGetCall(
-    "/students/show",
+    "/allExams/show",
     currentPage
   );
-
-  console.log(paginate);
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -24,13 +22,13 @@ const StudentShow: NextPageWithLayout = () => {
   const columns = [
     { header: "نام", accessor: "name" },
     { header: "کلاس", accessor: "classroom" },
-    { header: "کد ملی", accessor: "nationalId" },
-    { header: "تلفن", accessor: "phone" },
+    { header: "درس", accessor: "course" },
+    { header: "تاریخ", accessor: "date" },
   ];
 
   return (
     <>
-      <h1 className="text-3xl font-bold mb-4">لیست دانش آموزان</h1>
+      <h1 className="text-3xl font-bold mb-4">لیست امتحانات</h1>
       <Table data={data} columns={columns} />
       {paginate && paginate?.last_page > 1 && (
         <Pagination
@@ -43,5 +41,5 @@ const StudentShow: NextPageWithLayout = () => {
   );
 };
 
-StudentShow.getLayout = (page) => <UserPanelLayout>{page}</UserPanelLayout>;
-export default StudentShow;
+ExamShow.getLayout = (page) => <UserPanelLayout>{page}</UserPanelLayout>;
+export default ExamShow;

@@ -33,7 +33,7 @@ const sidebarData = {
     {
       name: "allExamList",
       lable: "لیست امتحانات",
-      url: "/panel",
+      url: "/panel/exams/show",
       icon: (
         <ClipboardDocumentListIcon className="h-6 w-6 ml-2 text-gray-600" />
       ),

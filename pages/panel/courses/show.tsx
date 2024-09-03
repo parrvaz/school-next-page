@@ -5,7 +5,7 @@ import { SWRGetCall } from "@/app/hooks/swrGetCall";
 import Pagination from "@/app/components/shared/table/pagination";
 import { useState } from "react";
 
-const ClassShow: NextPageWithLayout = () => {
+const CourseShow: NextPageWithLayout = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, paginate, error, isLoading } = SWRGetCall(
     "/courses/show",
@@ -41,5 +41,5 @@ const ClassShow: NextPageWithLayout = () => {
   );
 };
 
-ClassShow.getLayout = (page) => <UserPanelLayout>{page}</UserPanelLayout>;
-export default ClassShow;
+CourseShow.getLayout = (page) => <UserPanelLayout>{page}</UserPanelLayout>;
+export default CourseShow;
