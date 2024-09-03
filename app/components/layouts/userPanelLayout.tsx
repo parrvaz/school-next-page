@@ -41,6 +41,7 @@ const sidebarData = {
     },
     {
       name: "/panel/exams/store",
+      url: "/panel/exams/store",
       lable: "ثبت امتحان کتبی",
       icon: <PencilIcon className="h-6 w-6 ml-2 text-gray-600" />,
       hasSub: false,
