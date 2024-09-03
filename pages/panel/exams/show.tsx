@@ -20,9 +20,9 @@ const ExamShow: NextPageWithLayout = () => {
   };
 
   const columns = [
-    { header: "نام", accessor: "name" },
+    { header: "عنوان", accessor: "title" },
+    { header: "نوع", accessor: "type" },
     { header: "کلاس", accessor: "classroom" },
-    { header: "درس", accessor: "course" },
     { header: "تاریخ", accessor: "date" },
   ];
 
