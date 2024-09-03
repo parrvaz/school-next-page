@@ -11,50 +11,29 @@ interface StudentGrade {
 
 interface FormValues {
   date: string;
-  course: string;
-  classId: string;
-  students: StudentGrade[];
+  courseId: number | null;
+  classroomId: number | null;
+  students?: StudentGrade[];
 }
 
+const validationSchema = Yup.object({
+  date: Yup.string().required(),
+  courseId: Yup.string().required(),
+  classroomId: Yup.string().required(),
+  // students: Yup.array().of(
+  //   Yup.object({
+  //     id: Yup.number().required(),
+  //   })
+  // ),
+});
+
 const ExamForm = () => {
-  const [allCourses, setAllCourses] = useState([]);
-  const [allClasses, setAllClasses] = useState([]);
-  const [allStudents, setAllStudents] = useState([]);
-
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       const courses = await callApi("/api/courses");
-  //       const classes = await callApi("/api/classes");
-  //       const students = await callApi("/api/students");
-  //       setAllCourses(courses.data);
-  //       setAllClasses(classes.data);
-  //       setAllStudents(students.data);
-  //     };
-
-  //     fetchData();
-  //   }, []);
-
   const initialValues: FormValues = {
     date: "",
-    course: "",
-    classId: "",
+    courseId: null,
+    classroomId: null,
     students: [],
   };
-
-  const validationSchema = Yup.object({
-    date: Yup.string().required("تاریخ الزامی است"),
-    course: Yup.string().required("درس الزامی است"),
-    classId: Yup.string().required("کلاس الزامی است"),
-    students: Yup.array().of(
-      Yup.object({
-        id: Yup.string().required("شناسه دانش‌آموز الزامی است"),
-        grade: Yup.number()
-          .min(0, "نمره باید بین 0 و 20 باشد")
-          .max(20, "نمره باید بین 0 و 20 باشد")
-          .required("نمره الزامی است"),
-      })
-    ),
-  });
 
   const handleSubmit = async (values: FormValues) => {
     // const grades = values.students.reduce(
