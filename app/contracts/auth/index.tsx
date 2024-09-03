@@ -37,3 +37,13 @@ export interface ListItemProps {
 export interface SidebarProps {
   data: ListItemProps[];
 }
+
+interface ItemShortInterface {
+  id: string;
+  name?: string;
+  title?: string;
+}
+
+export interface ExamFormValuesInterface {
+  courses: ItemShortInterface[];
+}
