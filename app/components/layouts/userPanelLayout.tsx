@@ -104,12 +104,12 @@ const sidebarData = {
         {
           name: "/panel/teachers/show",
           lable: "لیست معلمان",
-          url: "/panel/classes/show",
+          url: "/panel/teachers/show",
         },
         {
           name: "/panel/teachers/store",
           lable: "ثبت معلم جدید",
-          url: "/panel/classes/store",
+          url: "/panel/teachers/store",
         },
       ],
     },
