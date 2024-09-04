@@ -56,3 +56,19 @@ export interface ItemShortProps {
   title?: string;
   name?: string;
 }
+
+export interface StudentStoreFormValuesInterface {
+  firstName: string;
+  lastName: string;
+  nationalId: string;
+  classroom_id: number | null;
+  birthday?: string;
+  onlyChild?: boolean;
+  address?: string;
+  phone?: string;
+  socialMediaID?: string;
+  numberOfGlasses?: number | null;
+  leftHand?: boolean;
+  religion?: string;
+  specialDisease?: string;
+}
