@@ -41,12 +41,12 @@ const TableBox: FC<TableBoxProps> = ({
                 </tr>
               </thead>
               <tbody>
-                {form.values[name].map((students: any, index: any) => (
+                {items.map((students: any, index: any) => (
                   <tr key={index} className="border-b border-gray-300">
                     <td className="py-2 px-4 text-right">
                       <Field
                         as="select"
-                        name={`${form.values}.${index}.id`}
+                        name={`${items}.${index}.id`}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                       >
                         <option value="">انتخاب {lable}</option>

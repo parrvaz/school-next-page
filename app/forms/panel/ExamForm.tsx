@@ -26,6 +26,8 @@ const ExamForm = withFormik<ExamFormProps, ExamFormValuesInterface>({
   validationSchema: examFormValidationSchema,
 
   handleSubmit: async (values) => {
+    console.log(1, values);
+
     const res = await callApi().post("/exams/store", values);
     if (res.status === 200) {
       Router.push("/panel/exams/show");
