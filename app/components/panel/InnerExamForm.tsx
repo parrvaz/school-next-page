@@ -43,6 +43,7 @@ const InnerExamForm = (
           lable="دانش آموز"
           columns={[{ name: "score", lable: "نمره" }]}
           allItems={students}
+          items={students}
         />
         <button
           type="submit"

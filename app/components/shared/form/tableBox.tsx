@@ -14,13 +14,20 @@ interface TableBoxProps {
   lable: string;
   columns: { name: string; lable: string }[];
   allItems: [];
+  items: [];
 }
 
-const TableBox: FC<TableBoxProps> = ({ name, lable, columns, allItems }) => {
+const TableBox: FC<TableBoxProps> = ({
+  name,
+  lable,
+  columns,
+  allItems,
+  items,
+}) => {
   return (
     <>
       <FieldArray name={name}>
-        {({ push, remove }) => (
+        {({ push, remove, form }) => (
           <div className="mt-6">
             <table className="min-w-full bg-white border border-gray-300 rounded-lg">
               <thead className="bg-green-500 text-white">
@@ -34,12 +41,12 @@ const TableBox: FC<TableBoxProps> = ({ name, lable, columns, allItems }) => {
                 </tr>
               </thead>
               <tbody>
-                {items.map((elements, index) => (
+                {form.values[name].map((students: any, index: any) => (
                   <tr key={index} className="border-b border-gray-300">
                     <td className="py-2 px-4 text-right">
                       <Field
                         as="select"
-                        name={`${items}.${index}.id`}
+                        name={`${form.values}.${index}.id`}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                       >
                         <option value="">انتخاب {lable}</option>
@@ -53,7 +60,7 @@ const TableBox: FC<TableBoxProps> = ({ name, lable, columns, allItems }) => {
                     {columns.map((column) => (
                       <td className="py-2 px-4 text-right">
                         <Input
-                          name={`${items}.${index}.${column.name}`}
+                          name={`${form.values}.${index}.${column.name}`}
                           lable=""
                           type="number"
                           //   inputClassName="w-full border-green-500"

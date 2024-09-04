@@ -22,11 +22,6 @@ const ExamForm = withFormik<ExamFormProps, ExamFormValuesInterface>({
     date: "",
     classroom_id: null,
     course_id: null,
-    items: props.students.map((item: any) => ({
-      id: item.id,
-      name: item.name,
-      grade: "",
-    })),
   }),
   validationSchema: examFormValidationSchema,
 
