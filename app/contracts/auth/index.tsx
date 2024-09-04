@@ -38,14 +38,21 @@ export interface SidebarProps {
   data: ListItemProps[];
 }
 
-interface ItemShortInterface {
-  id: string;
-  name?: string;
-  title?: string;
-}
-
 export interface ExamFormValuesInterface {
   date: string;
   classroom_id: number | null;
   course_id: number | null;
+}
+
+export interface ClassStoreFormValuesInterface {
+  title: string;
+  field_id: number | null;
+  number?: string | null;
+  floor?: string | null;
+}
+
+export interface ItemShortProps {
+  id: number;
+  title?: string;
+  name?: string;
 }

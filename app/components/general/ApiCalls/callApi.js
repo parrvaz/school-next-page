@@ -1,7 +1,8 @@
 import ValidationError from "@/app/exceptions/validationError";
 import axios from "axios";
 
-const callApi = () => {
+const callApi = (headers = {}) => {
+  // const cookie = new Cookies();
   const axiosInstance = axios.create({
     baseURL: "http://localhost:8000/api",
   });
@@ -9,6 +10,13 @@ const callApi = () => {
   axiosInstance.interceptors.request.use(
     (config) => {
       config.withCredentials = true;
+
+      if (config.method === "post") {
+        config.headers = {
+          ...config.headers,
+          ...headers, // هدرهای ورودی
+        };
+      }
       return config;
     },
     (err) => Promise.reject(err)
