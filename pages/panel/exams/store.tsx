@@ -8,6 +8,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import FormSelect from "@/app/components/shared/RHF/formSelect";
 import LoadingBox from "@/app/components/shared/RHF/loadingBox";
 import FormInput from "@/app/components/shared/RHF/formInput";
+import { ItemShortProps } from "@/app/contracts/auth";
 
 const ExamStore: NextPageWithLayout = () => {
   const rules = { required: true };
@@ -33,25 +34,33 @@ const ExamStore: NextPageWithLayout = () => {
     name: "students",
   });
 
-  const onSubmit = (e) => {
+  const onSubmit = (e: any) => {
     console.log("submit", e);
   };
 
-  const classOptions = data?.classrooms?.data?.map((k) => ({
+  const classOptions = data?.classrooms?.data?.map((k: ItemShortProps) => ({
     value: k.id,
     label: k.title,
   }));
 
+  const courseOptions = data?.courses?.data?.map((k: ItemShortProps) => ({
+    value: k.id,
+    label: k.name,
+  }));
+
   const students = data?.classrooms?.data?.find(
-    (k) => k?.id === watch("classroom")
+    (k: any) => k?.id === watch("classroom")
   )?.students.data;
-  const studentOptions = students?.map((k) => ({
+  const studentOptions = students?.map((k: ItemShortProps) => ({
     value: k.id,
     label: k.name,
   }));
 
   const handleFillForm = () => {
-    const newStudents = students.map((k) => ({ student_id: k.id, score: "" }));
+    const newStudents = students.map((k: ItemShortProps) => ({
+      student_id: k.id,
+      score: "",
+    }));
     console.log("fill");
 
     setValue("students", newStudents);
@@ -63,26 +72,56 @@ const ExamStore: NextPageWithLayout = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex h-full w-full flex-col items-center px-5"
       >
-        <div className="flex gap-3">
+        <div className="flex flex-col w-full md:flex-row gap-4">
           <FormSelect
             {...{ errors, control }}
-            className="min-w-[400px]"
+            className="w-full md:w-1/2"
             name="classroom"
             options={classOptions}
             rules={{ required: true }}
             placeholder="انتخاب کلاس"
           />
-          <button onClick={handleFillForm} className="btn" type="button">
-            پر کل
-          </button>
+          <FormSelect
+            {...{ errors, control }}
+            className="w-full md:w-1/2"
+            name="course"
+            options={courseOptions}
+            rules={{ required: true }}
+            placeholder="انتخاب درس"
+          />
+
+          <FormInput
+            {...{ errors, control }}
+            className="w-full md:w-1/2"
+            name={`date`}
+            placeholder="تاریخ را وارد کنید"
+            type="date"
+          />
         </div>
 
+        <div className="mt-5">
+          <div className="flex flex-col md:flex-row gap-4">
+            <button
+              type="button"
+              className="btn"
+              onClick={() => append({ student_id: "", score: "" })}
+            >
+              اضافه کردن دانش آموز جدید
+            </button>
+            <button onClick={handleFillForm} className="btn" type="button">
+              جدول دانش آموزان
+            </button>
+          </div>
+        </div>
         <div className="mt-10">
           {fields.map((field, index) => (
-            <div key={field.id} className="flex mb-10 gap-3">
+            <div
+              key={field.id}
+              className="flex flex-col w-full md:flex-row gap-4"
+            >
               <FormSelect
                 {...{ errors, control, rules }}
-                className=""
+                className="w-full md:w-1/2"
                 name={`students[${index}].student_id`}
                 options={studentOptions}
                 placeholder="نام دانش آموز"
@@ -100,12 +139,7 @@ const ExamStore: NextPageWithLayout = () => {
             </div>
           ))}
         </div>
-        <button
-          type="button"
-          onClick={() => append({ student_id: "", score: "" })}
-        >
-          Add Student
-        </button>
+
         <button className="btn mt-4 mb-6 w-full">'submit'</button>
       </form>
     </LoadingBox>
