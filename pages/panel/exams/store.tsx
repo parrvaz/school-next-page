@@ -2,7 +2,6 @@ import { NextPageWithLayout } from "@/pages/_app";
 import UserPanelLayout from "@/app/components/layouts/userPanelLayout";
 import { useState } from "react";
 import { SWRGetCall } from "@/app/hooks/swrGetCall";
-import ExamForm from "@/app/forms/panel/examForm";
 
 const ExamStore: NextPageWithLayout = () => {
   const { data, paginate, error, isLoading } = SWRGetCall("/allExams/create");
@@ -12,11 +11,11 @@ const ExamStore: NextPageWithLayout = () => {
 
   return (
     <>
-      <ExamForm
+      {/* <ExamForm
         courses={allCourses}
         classes={allClasses}
         students={allStudents}
-      />
+      /> */}
     </>
   );
 };

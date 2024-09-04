@@ -10,6 +10,7 @@ import {
 import InnerClassStoreForm from "@/app/components/panel/InnerClassStoreForm";
 
 import Cookies from "universal-cookie";
+import { PostCall } from "@/app/hooks/postCall";
 
 const ClassStoreFormValidationSchema = yup.object().shape({
   title: yup.string().required(),
@@ -35,18 +36,8 @@ const ClassStoreForm = withFormik<
   validationSchema: ClassStoreFormValidationSchema,
 
   handleSubmit: async (values) => {
-    const cookie = new Cookies();
-    const headers = {
-      Authorization: "Bearer " + cookie.get("shool_token"),
-      grade: "bMIuudAP8DCUtHvuP22sy4523DPodj",
-    };
-
-    const res = await callApi(headers).post("/classrooms/store", {
-      ...values,
-    });
-    if (res.status === 200) {
-      console.log("succes");
-    }
+    const res = await PostCall("/classrooms/store", values);
+    if (res?.status === 200) Router.push("/classes/show");
   },
 })(InnerClassStoreForm);
 
