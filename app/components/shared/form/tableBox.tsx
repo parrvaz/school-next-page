@@ -13,17 +13,10 @@ interface TableBoxProps {
   name: string;
   lable: string;
   columns: { name: string; lable: string }[];
-  items: [];
   allItems: [];
 }
 
-const TableBox: FC<TableBoxProps> = ({
-  name,
-  lable,
-  columns,
-  items,
-  allItems,
-}) => {
+const TableBox: FC<TableBoxProps> = ({ name, lable, columns, allItems }) => {
   return (
     <>
       <FieldArray name={name}>
@@ -32,6 +25,8 @@ const TableBox: FC<TableBoxProps> = ({
             <table className="min-w-full bg-white border border-gray-300 rounded-lg">
               <thead className="bg-green-500 text-white">
                 <tr>
+                  <th className="py-2 px-4 text-right">{lable}</th>
+
                   {columns.map((item) => (
                     <th className="py-2 px-4 text-right">{item.lable}</th>
                   ))}

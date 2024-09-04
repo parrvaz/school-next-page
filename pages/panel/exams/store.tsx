@@ -1,21 +1,22 @@
 import { NextPageWithLayout } from "@/pages/_app";
 import UserPanelLayout from "@/app/components/layouts/userPanelLayout";
-import ExamForm from "@/app/forms/panel/ExamForm";
 import { useState } from "react";
 import { SWRGetCall } from "@/app/hooks/swrGetCall";
+import ExamForm from "@/app/forms/panel/examForm";
 
 const ExamStore: NextPageWithLayout = () => {
-  const [allCourses, setAllCourses] = useState([]);
-  const [allClasses, setAllClasses] = useState([]);
-  const [allStudents, setAllStudents] = useState([]);
-
   const { data, paginate, error, isLoading } = SWRGetCall("/allExams/create");
-
-  console.log(data);
+  const [allCourses, setAllCourses] = useState(data?.courses?.data);
+  const [allClasses, setAllClasses] = useState(data?.classrooms?.data);
+  const [allStudents, setAllStudents] = useState(data?.students?.data);
 
   return (
     <>
-      <ExamForm />
+      <ExamForm
+        courses={allCourses}
+        classes={allClasses}
+        students={allStudents}
+      />
     </>
   );
 };

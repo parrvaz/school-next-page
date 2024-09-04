@@ -1,6 +1,9 @@
 import { Form, Formik, FormikProps } from "formik";
 import Input from "../shared/form/input";
-import { ExamFormValuesInterface } from "@/app/contracts/auth";
+import {
+  ExamFormValuesInterface,
+  RegisterFormValuesInterface,
+} from "@/app/contracts/auth";
 import SelectBox from "../shared/form/selectBox";
 import { FC } from "react";
 import TableBox from "../shared/form/tableBox";
@@ -11,7 +14,10 @@ interface InnerExamProps {
   students: [];
 }
 
-const InnerExamForm: FC<InnerExamProps> = ({ courses, classes, students }) => {
+const InnerExamForm = (
+  props: FormikProps<ExamFormValuesInterface> & InnerExamProps
+) => {
+  const { courses, classes, students } = props;
   return (
     <>
       <Form>
@@ -36,7 +42,6 @@ const InnerExamForm: FC<InnerExamProps> = ({ courses, classes, students }) => {
           name="students"
           lable="دانش آموز"
           columns={[{ name: "score", lable: "نمره" }]}
-          items={students}
           allItems={students}
         />
         <button

@@ -45,5 +45,7 @@ interface ItemShortInterface {
 }
 
 export interface ExamFormValuesInterface {
-  courses: ItemShortInterface[];
+  date: string;
+  classroom_id: number | null;
+  course_id: number | null;
 }
