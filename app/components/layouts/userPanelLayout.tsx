@@ -163,9 +163,21 @@ const sidebarData = {
     {
       name: "reports",
       lable: "گزارشات",
-      url: "/panel/reports",
+      // url: "/panel/reports",
       icon: <ChartBarIcon className="h-6 w-6 ml-2 text-gray-600" />,
-      hasSub: false,
+      hasSub: true,
+      subList: [
+        {
+          name: "/panel/reports/examCount",
+          lable: "فراوانی امتحانات",
+          url: "/panel/reports/examCount",
+        },
+        {
+          name: "/panel/classes/store",
+          lable: "ثبت کلاس جدید",
+          url: "/panel/classes/store",
+        },
+      ],
     },
   ],
 };

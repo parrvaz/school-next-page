@@ -99,7 +99,7 @@ const ExamStore: NextPageWithLayout = () => {
           />
         </div>
 
-        <div className="mt-5">
+        <div className="mt-5 self-start">
           <div className="flex flex-col md:flex-row gap-4">
             <button
               type="button"
@@ -140,7 +140,7 @@ const ExamStore: NextPageWithLayout = () => {
           ))}
         </div>
 
-        <button className="btn mt-4 mb-6 w-full">'submit'</button>
+        <button className="btn  mt-4 mb-6 w-full">'submit'</button>
       </form>
     </LoadingBox>
   );
