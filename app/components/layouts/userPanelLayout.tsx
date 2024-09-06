@@ -173,9 +173,14 @@ const sidebarData = {
           url: "/panel/reports/examCount",
         },
         {
-          name: "/panel/classes/store",
-          lable: "ثبت کلاس جدید",
-          url: "/panel/classes/store",
+          name: "/panel/reports/examProgress",
+          lable: "روند امتحانات کتبی",
+          url: "/panel/reports/examProgress",
+        },
+        {
+          name: "/panel/reports/classScoreProgress",
+          lable: "روند امتحانات شفاهی",
+          url: "/panel/reports/classScoreProgress",
         },
       ],
     },
