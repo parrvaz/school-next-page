@@ -11,10 +11,14 @@ import {
   VictoryLegend,
   VictoryLine,
 } from "victory";
+import MultiSelect from "@/app/components/shared/filter/multiSelect";
+import Filter from "@/app/components/general/filtet";
+import { useState } from "react";
 
 const ReportExamProgress: NextPageWithLayout = () => {
+  const [filterUrl, setFilterUrl] = useState("");
   const { data, paginate, error, isLoading } = SWRGetCall(
-    "/reports/exams/progress"
+    `/reports/exams/progress?${filterUrl}`
   );
 
   if (isLoading) return <div>Loading...</div>;
@@ -26,6 +30,8 @@ const ReportExamProgress: NextPageWithLayout = () => {
 
   return (
     <>
+      <Filter setFilterUrl={setFilterUrl} />
+      {/* <Filter /> */}
       <VictoryChart domainPadding={20}>
         {/* محور X */}
         <VictoryAxis
