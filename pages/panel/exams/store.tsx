@@ -8,6 +8,8 @@ import { useFieldArray, useForm } from "react-hook-form";
 import FormSelect from "@/app/components/shared/RHF/formSelect";
 import LoadingBox from "@/app/components/shared/RHF/loadingBox";
 import FormInput from "@/app/components/shared/RHF/formInput";
+import { TrashIcon } from "@heroicons/react/24/outline";
+import { PostCall } from "@/app/hooks/postCall";
 
 const ExamStore: NextPageWithLayout = () => {
   const rules = { required: true };
@@ -33,8 +35,9 @@ const ExamStore: NextPageWithLayout = () => {
     name: "students",
   });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     console.log("submit", e);
+    const res = await PostCall("/exams/store", e);
   };
 
   const classOptions = data?.classrooms?.data?.map((k) => ({
@@ -128,10 +131,10 @@ const ExamStore: NextPageWithLayout = () => {
 
         <div className="mt-10">
           {fields.map((field, index) => (
-            <div key={field.id} className="flex mb-10 gap-3">
+            <div key={field.id} className="flex mb-5 gap-3 w-full">
               <FormSelect
                 {...{ errors, control, rules }}
-                className=""
+                className="w-full md:w-1/2"
                 name={`students[${index}].student_id`}
                 options={studentOptions}
                 placeholder="نام دانش آموز"
@@ -139,18 +142,25 @@ const ExamStore: NextPageWithLayout = () => {
 
               <FormInput
                 {...{ errors, control }}
+                className="w-full md:w-1/4"
                 name={`students[${index}].score`}
-                placeholder="نمره را وارد کنید"
+                placeholder="نمره"
               />
 
-              <button type="button" onClick={() => remove(index)}>
-                Remove
+              <button
+                type="button"
+                onClick={() => remove(index)}
+                className="text-red-500 hover:text-red-700"
+              >
+                <TrashIcon className="h-5 w-5" />
               </button>
             </div>
           ))}
         </div>
 
-        <button className="btn mt-4 mb-6 w-full">ثبت آزمون</button>
+        <button className="btn mt-4 mb-6 w-full md:w-1/4 bg-green-300 hover:bg-green-400">
+          ثبت آزمون
+        </button>
       </form>
     </LoadingBox>
   );
