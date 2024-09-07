@@ -47,6 +47,7 @@ const sidebarData = {
       hasSub: false,
     },
     {
+      url: "/panel/exams/classScoreStore",
       name: "/panel/classScores/store",
       lable: "ثبت پرسش شفاهی",
       icon: (
