@@ -10,10 +10,15 @@ import {
   VictoryStack,
   VictoryLegend,
 } from "victory";
+import ChartBar from "@/app/components/shared/reports/chart";
+import Filter from "@/app/components/general/filtet";
+import { useState } from "react";
 
 const ReportExamCount: NextPageWithLayout = () => {
+  const [filterUrl, setFilterUrl] = useState("");
   const { data, paginate, error, isLoading } = SWRGetCall(
-    "/reports/exams/count"
+    `/reports/exams/count?${filterUrl}`,
+    false
   );
 
   if (isLoading) return <div>Loading...</div>;
@@ -24,69 +29,17 @@ const ReportExamCount: NextPageWithLayout = () => {
   const tickValues = data?.tickValues;
   const tickFormat = data?.tickFormat;
 
-  console.log("exam", exam);
-  console.log("classScore", classScore);
+  // console.log(222,  exam.length ?? true);
 
   return (
     <>
-      <VictoryChart domainPadding={20}>
-        {/* محور X */}
-        <VictoryAxis
-          tickValues={tickValues}
-          tickFormat={tickFormat}
-          tickLabelComponent={
-            <VictoryLabel angle={-45} textAnchor="start" dy={-10} dx={5} />
-          }
-          style={{
-            tickLabels: { fontSize: 10, padding: 10 },
-          }}
-        />
-
-        {/* محور Y */}
-        <VictoryAxis
-          dependentAxis
-          style={{
-            tickLabels: {
-              fontFamily: "IRANSans_SemiBold",
-              fontSize: 10,
-              padding: 10,
-            },
-          }}
-        />
-
-        {/* راهنمای رنگ‌ها */}
-        <VictoryLegend
-          x={300}
-          y={50}
-          orientation="horizontal"
-          gutter={50}
-          symbolSpacer={-10}
-          // direction=""
-          data={[
-            { name: "امتحانات کتبی", symbol: { fill: "#AA4465" } },
-            { name: "امتحانات شفاهی", symbol: { fill: "#E7CFCD" } },
-          ]}
-        />
-
-        <VictoryStack>
-          <VictoryBar
-            data={exam}
-            x="id"
-            y="count"
-            style={{
-              data: { fill: "#AA4465" },
-            }}
-          />
-          <VictoryBar
-            data={classScore}
-            x="id"
-            y="count"
-            style={{
-              data: { fill: "#E7CFCD" },
-            }}
-          />
-        </VictoryStack>
-      </VictoryChart>
+      <Filter setFilterUrl={setFilterUrl} />
+      <ChartBar
+        exams={exam}
+        classScores={classScore}
+        tickFormat={tickFormat}
+        tickValues={tickValues}
+      />
     </>
   );
 };

@@ -29,7 +29,7 @@ const Filter = (props: FilterProps) => {
       .map((item: ItemShortProps) => `student[]=${item.id}`)
       .join("&");
 
-    const url = `${cls}&${crs}&${std}`;
+    const url = `${cls}${crs}${std}`;
     props.setFilterUrl(url); // به روز رسانی URL با هر تغییر
   }, [filterSelections]); // اجرا هر زمان که مقادیر سلکت تغییر کنند
 
@@ -57,7 +57,7 @@ const Filter = (props: FilterProps) => {
           optionLabel="title"
           filter
           placeholder="انتخاب کلاس"
-          className="md:w-1/4 bg-white border-2 hover:border-green-300 rounded-md"
+          className="md:w-1/3 bg-white border-2 hover:border-green-300 rounded-md"
         />
         <MultiSelect
           value={filterSelections.courses}
@@ -66,7 +66,7 @@ const Filter = (props: FilterProps) => {
           optionLabel="name"
           filter
           placeholder="انتخاب درس"
-          className="md:w-1/4 bg-white border-2 hover:border-green-300 rounded-md"
+          className="md:w-1/3 bg-white border-2 hover:border-green-300 rounded-md"
         />
         <MultiSelect
           value={filterSelections.students}
@@ -75,7 +75,7 @@ const Filter = (props: FilterProps) => {
           optionLabel="name"
           filter
           placeholder="انتخاب دانش آموز"
-          className="md:w-1/4 bg-white border-2 hover:border-green-300 rounded-md"
+          className="md:w-1/3 bg-white border-2 hover:border-green-300 rounded-md"
         />
       </div>
     </>
