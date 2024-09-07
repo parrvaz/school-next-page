@@ -9,6 +9,7 @@ const CourseShow: NextPageWithLayout = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, paginate, error, isLoading } = SWRGetCall(
     "/courses/show",
+    true,
     currentPage
   );
 
