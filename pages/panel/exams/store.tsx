@@ -42,6 +42,11 @@ const ExamStore: NextPageWithLayout = () => {
     label: k.title,
   }));
 
+  const ccourseOptions = data?.courses?.data?.map((k) => ({
+    value: k.id,
+    label: k.name,
+  }));
+
   const students = data?.classrooms?.data?.find(
     (k) => k?.id === watch("classroom")
   )?.students.data;
@@ -63,17 +68,61 @@ const ExamStore: NextPageWithLayout = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex h-full w-full flex-col items-center px-5"
       >
-        <div className="flex gap-3">
+        <div className="flex flex-col w-full md:flex-row gap-4">
           <FormSelect
             {...{ errors, control }}
-            className="min-w-[400px]"
+            className="w-full md:w-1/4"
             name="classroom"
             options={classOptions}
             rules={{ required: true }}
             placeholder="انتخاب کلاس"
           />
-          <button onClick={handleFillForm} className="btn" type="button">
-            پر کل
+          <FormSelect
+            {...{ errors, control }}
+            className="w-full md:w-1/4"
+            name="course_id"
+            options={ccourseOptions}
+            rules={{ required: true }}
+            placeholder="انتخاب درس"
+          />
+          <FormInput
+            {...{ errors, control }}
+            className="w-full md:w-1/4"
+            name="totalScore"
+            rules={{ required: true }}
+            placeholder="نمره کل"
+            type="number"
+          />
+          <FormInput
+            {...{ errors, control }}
+            className="w-full md:w-1/4"
+            name="expected"
+            placeholder="نمره مورد انتظار"
+            type="number"
+          />
+          <FormInput
+            {...{ errors, control }}
+            className="w-full md:w-1/4"
+            name="date"
+            rules={{ required: true }}
+            placeholder="تاریخ"
+            type="date"
+          />
+        </div>
+        <div className="flex flex-col w-full md:flex-row gap-4 mt-5">
+          <button
+            type="button"
+            className="bg-green-300 btn hover:bg-green-400 w-full md:w-1/4"
+            onClick={() => append({ student_id: "", score: "" })}
+          >
+            اضافه کردن دانش آموز جدید
+          </button>
+          <button
+            onClick={handleFillForm}
+            className="btn bg-green-300 hover:bg-green-400 w-full md:w-1/4"
+            type="button"
+          >
+            کل دانش آموزان کلاس
           </button>
         </div>
 
@@ -100,13 +149,8 @@ const ExamStore: NextPageWithLayout = () => {
             </div>
           ))}
         </div>
-        <button
-          type="button"
-          onClick={() => append({ student_id: "", score: "" })}
-        >
-          Add Student
-        </button>
-        <button className="btn mt-4 mb-6 w-full">'submit'</button>
+
+        <button className="btn mt-4 mb-6 w-full">ثبت آزمون</button>
       </form>
     </LoadingBox>
   );
