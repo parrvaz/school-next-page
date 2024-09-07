@@ -10,7 +10,7 @@ import {
   VictoryStack,
   VictoryLegend,
 } from "victory";
-import ChartBar from "@/app/components/shared/reports/chart";
+import ChartBar from "@/app/components/shared/reports/chartbar";
 import Filter from "@/app/components/general/filtet";
 import { useState } from "react";
 
