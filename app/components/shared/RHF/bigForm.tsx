@@ -10,6 +10,7 @@ import LoadingBox from "@/app/components/shared/RHF/loadingBox";
 import FormInput from "@/app/components/shared/RHF/formInput";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { PostCall } from "@/app/hooks/postCall";
+import { ItemShortProps } from "@/app/contracts/auth";
 
 interface BigFormProps {
   url: string;
@@ -39,7 +40,7 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
     name: "students",
   });
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: any) => {
     console.log("submit", {
       ...e,
       classroom_id: e.classroom,
@@ -50,26 +51,29 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
     });
   };
 
-  const classOptions = data?.classrooms?.data?.map((k) => ({
+  const classOptions = data?.classrooms?.data?.map((k: ItemShortProps) => ({
     value: k.id,
     label: k.title,
   }));
 
-  const ccourseOptions = data?.courses?.data?.map((k) => ({
+  const ccourseOptions = data?.courses?.data?.map((k: ItemShortProps) => ({
     value: k.id,
     label: k.name,
   }));
 
   const students = data?.classrooms?.data?.find(
-    (k) => k?.id === watch("classroom")
+    (k: any) => k?.id === watch("classroom")
   )?.students.data;
-  const studentOptions = students?.map((k) => ({
+  const studentOptions = students?.map((k: ItemShortProps) => ({
     value: k.id,
     label: k.name,
   }));
 
   const handleFillForm = () => {
-    const newStudents = students.map((k) => ({ student_id: k.id, score: "" }));
+    const newStudents = students.map((k: ItemShortProps) => ({
+      student_id: k.id,
+      score: "",
+    }));
     console.log("fill");
 
     setValue("students", newStudents);
