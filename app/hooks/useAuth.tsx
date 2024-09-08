@@ -6,7 +6,7 @@ import Router from "next/router";
 const fetcher = async (url: string) => {
   const cookie = new Cookies();
 
-  if (!cookie.get("shool_token")) {
+  if (!cookie.get("school_token")) {
     Router.push("/auth/login");
     return;
   }
@@ -14,7 +14,7 @@ const fetcher = async (url: string) => {
   const response = callApi().get("/user", {
     headers: {
       Accept: "application/json",
-      Authorization: "Bearer " + cookie.get("shool_token"),
+      Authorization: "Bearer " + cookie.get("school_token"),
     },
   });
 

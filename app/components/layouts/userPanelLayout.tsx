@@ -21,7 +21,43 @@ interface Props {
   children: ReactNode;
 }
 
-const sidebarData = {
+const UserPanelLayout = ({ children }: Props) => {
+  const router = useRouter();
+  const { user, error, loading } = useAuth();
+
+  if (loading) return <div>Loading...</div>;
+
+  if (error) {
+    //show error
+    router.push("/auth/login");
+    return <></>;
+  }
+
+  let sidbardData = sidebarDataManager;
+  switch (user.role) {
+    case "manager":
+      sidbardData = sidebarDataManager;
+      break;
+    case "student":
+      sidbardData = sidebarDataStudent;
+
+      break;
+    case "teacher":
+      sidbardData = sidebarDataTeacher;
+
+      break;
+  }
+
+  return (
+    <>
+      <PanelLayout sidebarData={sidbardData}>{children}</PanelLayout>
+    </>
+  );
+};
+
+export default UserPanelLayout;
+
+const sidebarDataManager = {
   data: [
     {
       name: "dashboard",
@@ -188,23 +224,142 @@ const sidebarData = {
   ],
 };
 
-const UserPanelLayout = ({ children }: Props) => {
-  const router = useRouter();
-  const { user, error, loading } = useAuth();
-
-  if (loading) return <div>Loading...</div>;
-
-  if (error) {
-    //show error
-    router.push("/auth/login");
-    return <></>;
-  }
-
-  return (
-    <>
-      <PanelLayout sidebarData={sidebarData}>{children}</PanelLayout>
-    </>
-  );
+const sidebarDataTeacher = {
+  data: [
+    {
+      name: "dashboard",
+      lable: "داشبورد",
+      url: "/panel",
+      icon: <HomeIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: false,
+    },
+    {
+      name: "allExamList",
+      lable: "لیست امتحانات",
+      url: "/panel/exams/show",
+      icon: (
+        <ClipboardDocumentListIcon className="h-6 w-6 ml-2 text-gray-600" />
+      ),
+      hasSub: false,
+    },
+    {
+      name: "/panel/exams/store",
+      url: "/panel/exams/store",
+      lable: "ثبت امتحان کتبی",
+      icon: <PencilIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: false,
+    },
+    {
+      name: "/panel/classScores/store",
+      lable: "ثبت پرسش شفاهی",
+      icon: (
+        <ChatBubbleBottomCenterIcon className="h-6 w-6 ml-2 text-gray-600" />
+      ),
+      hasSub: false,
+    },
+    {
+      name: "/panel/tests/store",
+      lable: "ثبت آزمون تستی",
+      icon: <DocumentCheckIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: false,
+    },
+    {
+      name: "reports",
+      lable: "گزارشات",
+      // url: "/panel/reports",
+      icon: <ChartBarIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: true,
+      subList: [
+        {
+          name: "/panel/reports/examCount",
+          lable: "فراوانی امتحانات",
+          url: "/panel/reports/examCount",
+        },
+        {
+          name: "/panel/reports/examProgress",
+          lable: "روند امتحانات کتبی",
+          url: "/panel/reports/examProgress",
+        },
+        {
+          name: "/panel/reports/classScoreProgress",
+          lable: "روند امتحانات شفاهی",
+          url: "/panel/reports/classScoreProgress",
+        },
+      ],
+    },
+  ],
 };
 
-export default UserPanelLayout;
+const sidebarDataStudent = {
+  data: [
+    {
+      name: "dashboard",
+      lable: "داشبورد",
+      url: "/panel",
+      icon: <HomeIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: false,
+    },
+    {
+      name: "allExamList",
+      lable: "لیست امتحانات",
+      url: "/panel/exams/show",
+      icon: (
+        <ClipboardDocumentListIcon className="h-6 w-6 ml-2 text-gray-600" />
+      ),
+      hasSub: false,
+    },
+
+    {
+      name: "/panel/plans",
+      lable: "برنامه مطالعاتی",
+      icon: <CalendarDateRangeIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: true,
+      subList: [
+        {
+          name: "/panel/plans/show",
+          lable: "لیست برنامه مطالعاتی",
+          url: "/panel/classes/show",
+        },
+        {
+          name: "/panel/plans/store",
+          lable: "ثبت برنامه مطالعاتی جدید",
+          url: "/panel/classes/store",
+        },
+        {
+          name: "/panel/plans/students/show",
+          lable: "برنامه مطالعاتی دانش آموزان",
+          url: "/panel/classes/show",
+        },
+        {
+          name: "/panel/plans/students/store",
+          lable: "ثبت برنامه دانش آموز",
+          url: "/panel/classes/store",
+        },
+      ],
+    },
+    {
+      name: "reports",
+      lable: "گزارشات",
+      // url: "/panel/reports",
+      icon: <ChartBarIcon className="h-6 w-6 ml-2 text-gray-600" />,
+      hasSub: true,
+      subList: [
+        {
+          name: "/panel/reports/examCount",
+          lable: "فراوانی امتحانات",
+          url: "/panel/reports/examCount",
+        },
+        {
+          name: "/panel/reports/examProgress",
+          lable: "روند امتحانات کتبی",
+          url: "/panel/reports/examProgress",
+        },
+        {
+          name: "/panel/reports/classScoreProgress",
+          lable: "روند امتحانات شفاهی",
+          url: "/panel/reports/classScoreProgress",
+        },
+      ],
+    },
+  ],
+};

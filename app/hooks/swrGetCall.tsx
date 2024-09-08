@@ -11,7 +11,7 @@ export async function fetcherMethode(props: any) {
   let response = await callApi().get(`${props.url}${pagestr}`, {
     headers: {
       Accept: "application/json",
-      Authorization: "Bearer " + cookie.get("shool_token"),
+      Authorization: "Bearer " + cookie.get("school_token"),
       grade: "bMIuudAP8DCUtHvuP22sy4523DPodj",
     },
   });

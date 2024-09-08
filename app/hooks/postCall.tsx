@@ -9,7 +9,7 @@ export async function PostCall(
 ) {
   const cookie = new Cookies();
   const headers = {
-    Authorization: "Bearer " + cookie.get("shool_token"),
+    Authorization: "Bearer " + cookie.get("school_token"),
     grade: "bMIuudAP8DCUtHvuP22sy4523DPodj",
   };
 

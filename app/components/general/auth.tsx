@@ -6,12 +6,12 @@ const storeLoginTokne = (token: string, days: number = 10) => {
     // domain: ".semimgroup.ir",
     maxAge: days * 24 * 3600,
   });
-  cookies.set("shool_token", token);
+  cookies.set("school_token", token);
 };
 
 const removeLoginTokne = async () => {
   let cookie = new Cookies();
-  cookie.remove("shool_token");
+  cookie.remove("school_token");
 };
 
 export { storeLoginTokne, removeLoginTokne };
