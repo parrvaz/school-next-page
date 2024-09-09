@@ -41,13 +41,13 @@ interface BigFormProps {
 
 const BigForm: FC<BigFormProps> = ({ url }) => {
   const [dateValue, setDateValue] = useState(new Date()); // پیش فرض تاریخ امروز
-
-  const handleDateChange = (selectedDate) => {
+  const [dateValueMiladi, setDateValueMiladi] = useState(
+    moment(dateValue).format("YYYY/MM/DD")
+  ); // پیش فرض تاریخ امروز
+  const handleDateChange = (selectedDate: any) => {
     setDateValue(selectedDate);
-
     // تبدیل تاریخ شمسی به میلادی
-    const gregorianDate = moment(selectedDate.toDate()).format("YYYY/MM/DD");
-    console.log("تاریخ میلادی:", gregorianDate);
+    setDateValueMiladi(moment(selectedDate.toDate()).format("YYYY/MM/DD"));
   };
 
   const rules = { required: true };
@@ -78,10 +78,12 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
     console.log("submit", {
       ...e,
       classroom_id: e.classroom,
+      date: dateValueMiladi,
     });
     const res = await PostCall(url, {
       ...e,
       classroom_id: e.classroom,
+      date: dateValueMiladi,
     });
   };
 
@@ -139,14 +141,6 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
             placeholder="انتخاب درس"
           />
 
-          {/* <FormInput
-            {...{ errors, control }}
-            className="w-full md:w-1/3"
-            name="date"
-            rules={{ required: true }}
-            placeholder="تاریخ"
-            type="date"
-          /> */}
           <DatePicker
             value={dateValue}
             onChange={handleDateChange}
@@ -171,6 +165,7 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
             name="expected"
             placeholder="نمره مورد انتظار"
             type="number"
+            rules={{ required: true }}
           />
           <FormRadio
             {...{ errors, control }}
