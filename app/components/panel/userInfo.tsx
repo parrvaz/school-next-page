@@ -11,10 +11,12 @@ const UserInfo = () => {
   };
   return (
     <>
-      <span>username: </span>
-      <h2>{user?.name}</h2>
+      {/* <span>username: </span>
+      <h2>{user?.name}</h2> */}
 
-      <button onClick={logoutHandler}>logout</button>
+      <button className="btn btn-warning btn-sm" onClick={logoutHandler}>
+        خروج از حساب کاربری
+      </button>
     </>
   );
 };

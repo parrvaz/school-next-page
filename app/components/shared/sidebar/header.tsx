@@ -1,4 +1,5 @@
 import Image from "next/image";
+import UserInfo from "../../panel/userInfo";
 
 const Header = () => {
   return (
@@ -7,10 +8,14 @@ const Header = () => {
         <div className="flex justify-center items-center mx-auto max-w-screen-xl">
           {/* <div className="absolute right text-white top-3 left-5"> */}
           <a href="https://semimgroup.ir" className="flex items-center">
-            <img src="/logo.png" className="mr-3 h-6 sm:h-9" alt="Semim Logo" />
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+            <img
+              src="/semim.png"
+              className="mr-3 h-6 sm:h-9"
+              alt="Semim Logo"
+            />
+            {/* <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
               Semim Group
-            </span>
+            </span> */}
           </a>
         </div>
 
@@ -25,6 +30,10 @@ const Header = () => {
               مدرسه شهید احمدی روشن
             </span>
           </a>
+        </div>
+
+        <div className="absolute right text-white top-3 left-5 ">
+          <UserInfo />
         </div>
       </nav>
     </header>

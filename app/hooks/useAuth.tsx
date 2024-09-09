@@ -7,7 +7,7 @@ const fetcher = async (url: string) => {
   const cookie = new Cookies();
 
   if (!cookie.get("school_token")) {
-    Router.push("/auth/login");
+    // Router.push("/auth/login");
     return;
   }
 

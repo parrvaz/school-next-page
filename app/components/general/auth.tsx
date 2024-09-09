@@ -10,6 +10,8 @@ const storeLoginTokne = (token: string, days: number = 10) => {
 };
 
 const removeLoginTokne = async () => {
+  console.log("heer");
+
   let cookie = new Cookies();
   cookie.remove("school_token");
 };

@@ -15,7 +15,6 @@ const GuestPanelLayout = ({ children }: Props) => {
     return <></>;
   }
 
-  console.log("user", user);
   return <div className="w-full text-2x1 ">{children}</div>;
 };
 

@@ -33,6 +33,6 @@ const Register: NextPageWithLayout = () => {
   );
 };
 
-Register.getLayout = (page) => <GuestPanelLayout>{page}</GuestPanelLayout>;
+// Register.getLayout = (page) => <GuestPanelLayout>{page}</GuestPanelLayout>;
 
 export default Register;
