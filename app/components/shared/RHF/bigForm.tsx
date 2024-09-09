@@ -1,16 +1,35 @@
 import { NextPageWithLayout } from "@/pages/_app";
 import UserPanelLayout from "@/app/components/layouts/userPanelLayout";
-import { FC, useMemo, useState } from "react";
+import { BaseSyntheticEvent, FC, useMemo, useState } from "react";
 import { SWRGetCall } from "@/app/hooks/swrGetCall";
 import ExamForm from "@/app/forms/panel/ExamForm";
 import { log } from "console";
-import { useFieldArray, useForm } from "react-hook-form";
+import {
+  ErrorOption,
+  Field,
+  FieldArray,
+  FieldArrayPath,
+  FieldError,
+  FieldErrors,
+  FieldName,
+  FieldRefs,
+  FieldValues,
+  FormState,
+  InternalFieldName,
+  RegisterOptions,
+  SubmitErrorHandler,
+  SubmitHandler,
+  useFieldArray,
+  useForm,
+  UseFormRegisterReturn,
+} from "react-hook-form";
 import FormSelect from "@/app/components/shared/RHF/formSelect";
 import LoadingBox from "@/app/components/shared/RHF/loadingBox";
 import FormInput from "@/app/components/shared/RHF/formInput";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { PostCall } from "@/app/hooks/postCall";
 import { ItemShortProps } from "@/app/contracts/auth";
+import FormRadio from "./formRadio";
 
 interface BigFormProps {
   url: string;
@@ -30,6 +49,7 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
     register,
   } = useForm({
     defaultValues: {
+      status: 0,
       classroom: "",
       students: [{ student_id: "", score: "" }],
     },
@@ -90,7 +110,7 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
         <div className="flex flex-col w-full md:flex-row gap-4">
           <FormSelect
             {...{ errors, control }}
-            className="w-full md:w-1/4"
+            className="w-full md:w-1/3"
             name="classroom"
             options={classOptions}
             rules={{ required: true }}
@@ -98,12 +118,23 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
           />
           <FormSelect
             {...{ errors, control }}
-            className="w-full md:w-1/4"
+            className="w-full md:w-1/3"
             name="course_id"
             options={ccourseOptions}
             rules={{ required: true }}
             placeholder="انتخاب درس"
           />
+
+          <FormInput
+            {...{ errors, control }}
+            className="w-full md:w-1/3"
+            name="date"
+            rules={{ required: true }}
+            placeholder="تاریخ"
+            type="date"
+          />
+        </div>
+        <div className="flex flex-col w-full md:flex-row gap-4 mt-5">
           <FormInput
             {...{ errors, control }}
             className="w-full md:w-1/4"
@@ -119,13 +150,15 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
             placeholder="نمره مورد انتظار"
             type="number"
           />
-          <FormInput
+          <FormRadio
             {...{ errors, control }}
-            className="w-full md:w-1/4"
-            name="date"
+            className="w-full md:w-1/2"
+            name="status"
+            options={[
+              { value: 0, title: "ناقص" },
+              { value: 1, title: "تکمیل" },
+            ]}
             rules={{ required: true }}
-            placeholder="تاریخ"
-            type="date"
           />
         </div>
         <div className="flex flex-col w-full md:flex-row gap-4 mt-5">

@@ -20,11 +20,14 @@ const ExamShow: NextPageWithLayout = () => {
     setCurrentPage(page);
   };
 
+  console.log(data);
+
   const columns = [
     { header: "عنوان", accessor: "title" },
     { header: "نوع", accessor: "type" },
     { header: "کلاس", accessor: "classroom" },
     { header: "تاریخ", accessor: "date" },
+    { header: "وضعیت", accessor: "status" },
   ];
 
   return (
