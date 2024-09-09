@@ -30,12 +30,26 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 import { PostCall } from "@/app/hooks/postCall";
 import { ItemShortProps } from "@/app/contracts/auth";
 import FormRadio from "./formRadio";
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import moment from "moment";
 
 interface BigFormProps {
   url: string;
 }
 
 const BigForm: FC<BigFormProps> = ({ url }) => {
+  const [dateValue, setDateValue] = useState(new Date()); // پیش فرض تاریخ امروز
+
+  const handleDateChange = (selectedDate) => {
+    setDateValue(selectedDate);
+
+    // تبدیل تاریخ شمسی به میلادی
+    const gregorianDate = moment(selectedDate.toDate()).format("YYYY/MM/DD");
+    console.log("تاریخ میلادی:", gregorianDate);
+  };
+
   const rules = { required: true };
 
   const { data, error, isLoading } = SWRGetCall("/allExams/create");
@@ -125,13 +139,21 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
             placeholder="انتخاب درس"
           />
 
-          <FormInput
+          {/* <FormInput
             {...{ errors, control }}
             className="w-full md:w-1/3"
             name="date"
             rules={{ required: true }}
             placeholder="تاریخ"
             type="date"
+          /> */}
+          <DatePicker
+            value={dateValue}
+            onChange={handleDateChange}
+            calendar={persian} // تنظیم تقویم شمسی
+            locale={persian_fa} // تنظیم زبان فارسی
+            format="YYYY/MM/DD" // فرمت نمایش
+            inputClass="custom-input"
           />
         </div>
         <div className="flex flex-col w-full md:flex-row gap-4 mt-5">
