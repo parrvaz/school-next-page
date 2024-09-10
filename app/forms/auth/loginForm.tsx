@@ -27,8 +27,9 @@ const LoginForm = withFormik<LoginFormProps, LoginFormValuesInterface>({
   handleSubmit: async (values, { props, setFieldError }) => {
     try {
       const res = await callApi().post("/login", values);
+
       if (res.status === 200) {
-        storeLoginTokne(res.data?.token);
+        storeLoginTokne(res.data?.token, res?.data?.user);
         Router.push("/panel");
       }
     } catch (error) {
