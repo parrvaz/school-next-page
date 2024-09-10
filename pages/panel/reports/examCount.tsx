@@ -29,8 +29,6 @@ const ReportExamCount: NextPageWithLayout = () => {
   const tickValues = data?.tickValues;
   const tickFormat = data?.tickFormat;
 
-  // console.log(222,  exam.length ?? true);
-
   return (
     <>
       <Filter setFilterUrl={setFilterUrl} student={data.user} />
