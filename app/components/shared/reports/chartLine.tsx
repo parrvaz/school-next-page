@@ -1,3 +1,4 @@
+import { SWRGetCall } from "@/app/hooks/swrGetCall";
 import { ErrorMessage, Field } from "formik";
 import { FC } from "react";
 import {
@@ -11,19 +12,24 @@ import {
 } from "victory";
 
 interface ChartLineProps {
-  tickValues?: [];
-  tickFormat?: [];
-  data?: [];
+  url: string;
+  filterUrl?: string;
   title?: string;
 }
 
-const ChartLine: FC<ChartLineProps> = ({
-  tickValues,
-  tickFormat,
-  data,
-  title,
-}) => {
+const ChartLine: FC<ChartLineProps> = ({ url, filterUrl, title }) => {
   const colors = ["#AA4465", "#E7CFCD", "#037971", "#276FBF"];
+  const { data, paginate, error, isLoading } = SWRGetCall(
+    `${url}?${filterUrl}`
+  );
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
+  const exam = data?.exam;
+  const tickValues = data?.tickValues;
+  const tickFormat = data?.tickFormat;
+
   return (
     <>
       <VictoryChart domainPadding={20} title={title ?? ""}>
@@ -68,7 +74,7 @@ const ChartLine: FC<ChartLineProps> = ({
         />
 
         <VictoryLine
-          data={data}
+          data={exam}
           x="date"
           y="score"
           style={{
@@ -76,7 +82,7 @@ const ChartLine: FC<ChartLineProps> = ({
           }}
         />
         <VictoryLine
-          data={data}
+          data={exam}
           x="date"
           y="totalScore"
           style={{
@@ -84,7 +90,7 @@ const ChartLine: FC<ChartLineProps> = ({
           }}
         />
         <VictoryLine
-          data={data}
+          data={exam}
           x="date"
           y="expected"
           style={{

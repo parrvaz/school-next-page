@@ -1,3 +1,4 @@
+import { SWRGetCall } from "@/app/hooks/swrGetCall";
 import { ErrorMessage, Field } from "formik";
 import { FC } from "react";
 import {
@@ -10,18 +11,24 @@ import {
 } from "victory";
 
 interface ChartBarProps {
-  tickValues?: [];
-  tickFormat?: [];
-  exams?: [];
-  classScores?: [];
+  url?: string;
+  filterUrl?: string;
 }
 
-const ChartBar: FC<ChartBarProps> = ({
-  tickValues,
-  tickFormat,
-  exams,
-  classScores,
-}) => {
+const ChartBar: FC<ChartBarProps> = ({ url, filterUrl }) => {
+  const { data, paginate, error, isLoading } = SWRGetCall(
+    `${url}?${filterUrl}`,
+    false
+  );
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
+  const exams = data?.exam;
+  const classScores = data?.classScore;
+  const tickValues = data?.tickValues;
+  const tickFormat = data?.tickFormat;
+
   const colors = ["#AA4465", "#E7CFCD", "#037971", "#276FBF"];
   return (
     <>

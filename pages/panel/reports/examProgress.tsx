@@ -17,21 +17,15 @@ import ChartLine from "@/app/components/shared/reports/chartLine";
 
 const ReportExamProgress: NextPageWithLayout = () => {
   const [filterUrl, setFilterUrl] = useState("");
-  const { data, paginate, error, isLoading } = SWRGetCall(
-    `/reports/exams/progress?${filterUrl}`
-  );
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-
-  const exam = data?.exam;
-  const tickValues = data?.tickValues;
-  const tickFormat = data?.tickFormat;
 
   return (
     <>
-      <Filter setFilterUrl={setFilterUrl} student={data.user} />
-      <ChartLine data={exam} tickFormat={tickFormat} tickValues={tickValues} />
+      <Filter setFilterUrl={setFilterUrl} />
+      <ChartLine
+        url="/reports/exams/progress"
+        filterUrl={filterUrl}
+        title="روند امتحانات شفاهی"
+      />
     </>
   );
 };

@@ -14,34 +14,16 @@ import ChartBar from "@/app/components/shared/reports/chartbar";
 import Filter from "@/app/components/general/filtet";
 import { useState } from "react";
 
-interface ReportExamCount {
-  filterUrl: string;
-}
-
-const ReportExamCount = (props: ReportExamCount) => {
-  const { data, paginate, error, isLoading } = SWRGetCall(
-    `/reports/exams/count?${props.filterUrl}`,
-    false
-  );
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-
-  const exam = data?.exam;
-  const classScore = data?.classScore;
-  const tickValues = data?.tickValues;
-  const tickFormat = data?.tickFormat;
+const ReportExamCount: NextPageWithLayout = () => {
+  const [filterUrl, setFilterUrl] = useState("");
 
   return (
     <>
-      <ChartBar
-        exams={exam}
-        classScores={classScore}
-        tickFormat={tickFormat}
-        tickValues={tickValues}
-      />
+      <Filter setFilterUrl={setFilterUrl} />
+      <ChartBar url="/reports/exams/count" filterUrl={filterUrl} />
     </>
   );
 };
 
+ReportExamCount.getLayout = (page) => <UserPanelLayout>{page}</UserPanelLayout>;
 export default ReportExamCount;
