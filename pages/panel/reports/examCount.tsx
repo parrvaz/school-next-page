@@ -33,7 +33,7 @@ const ReportExamCount: NextPageWithLayout = () => {
 
   return (
     <>
-      <Filter setFilterUrl={setFilterUrl} />
+      <Filter setFilterUrl={setFilterUrl} student={data.user} />
       <ChartBar
         exams={exam}
         classScores={classScore}

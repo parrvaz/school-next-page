@@ -6,6 +6,7 @@ import { ItemShortProps } from "@/app/contracts/auth";
 
 interface FilterProps {
   setFilterUrl: (url: string) => void;
+  student?: any;
 }
 
 const Filter = (props: FilterProps) => {
@@ -13,8 +14,13 @@ const Filter = (props: FilterProps) => {
   const [filterSelections, setFilterSelections] = useState({
     classrooms: [] as ItemShortProps[],
     courses: [] as ItemShortProps[],
-    students: [] as ItemShortProps[],
+    students:
+      props.student.role === "student" && props.student?.id
+        ? [{ id: props.student?.id, name: props.student?.name }]
+        : [],
   });
+
+  console.log("std", filterSelections.students);
 
   const { data, isLoading, error } = SWRGetCall("/reports/listItems");
 
@@ -76,6 +82,7 @@ const Filter = (props: FilterProps) => {
           filter
           placeholder="انتخاب دانش آموز"
           className="md:w-1/3 bg-white border-2 hover:border-green-300 rounded-md"
+          disabled={props.student.role === "student"}
         />
       </div>
     </>

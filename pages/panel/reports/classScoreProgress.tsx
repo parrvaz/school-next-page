@@ -30,7 +30,7 @@ const ReportClassScoreProgress: NextPageWithLayout = () => {
 
   return (
     <>
-      <Filter setFilterUrl={setFilterUrl} />
+      <Filter setFilterUrl={setFilterUrl} student={data.user} />
       <ChartLine data={exam} tickFormat={tickFormat} tickValues={tickValues} />
     </>
   );
