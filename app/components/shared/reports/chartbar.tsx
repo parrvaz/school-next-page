@@ -25,7 +25,7 @@ const ChartBar: FC<ChartBarProps> = ({
   const colors = ["#AA4465", "#E7CFCD", "#037971", "#276FBF"];
   return (
     <>
-      <VictoryChart domainPadding={20}>
+      <VictoryChart domainPadding={20} title="فراوانی امتحانات">
         {/* محور X */}
         <VictoryAxis
           tickValues={tickValues}

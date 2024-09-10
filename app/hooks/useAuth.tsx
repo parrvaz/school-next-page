@@ -11,8 +11,6 @@ const fetcher = async (url: string) => {
     return;
   }
 
-  console.log(cookie.get("school_token"));
-
   try {
     const response = callApi().get("/user", {
       headers: {

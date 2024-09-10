@@ -15,12 +15,10 @@ const Filter = (props: FilterProps) => {
     classrooms: [] as ItemShortProps[],
     courses: [] as ItemShortProps[],
     students:
-      props.student.role === "student" && props.student?.id
-        ? [{ id: props.student?.id, name: props.student?.name }]
+      props.student?.role === "student" && props.student?.role_id
+        ? [{ id: props.student?.role_id, name: props.student?.name }]
         : [],
   });
-
-  console.log("std", filterSelections.students);
 
   const { data, isLoading, error } = SWRGetCall("/reports/listItems");
 
@@ -56,7 +54,7 @@ const Filter = (props: FilterProps) => {
   return (
     <>
       <div className="flex flex-col w-full md:flex-row gap-4">
-        {props.student.role !== "student" && (
+        {props.student?.role !== "student" && (
           <MultiSelect
             value={filterSelections.classrooms}
             onChange={(e) => handleSelectionChange("classrooms", e.value)}
@@ -84,7 +82,7 @@ const Filter = (props: FilterProps) => {
           filter
           placeholder="انتخاب دانش آموز"
           className="md:w-1/3 bg-white border-2 hover:border-green-300 rounded-md"
-          disabled={props.student.role === "student"}
+          disabled={props.student?.role === "student"}
         />
       </div>
     </>

@@ -14,13 +14,19 @@ interface ChartLineProps {
   tickValues?: [];
   tickFormat?: [];
   data?: [];
+  title?: string;
 }
 
-const ChartLine: FC<ChartLineProps> = ({ tickValues, tickFormat, data }) => {
+const ChartLine: FC<ChartLineProps> = ({
+  tickValues,
+  tickFormat,
+  data,
+  title,
+}) => {
   const colors = ["#AA4465", "#E7CFCD", "#037971", "#276FBF"];
   return (
     <>
-      <VictoryChart domainPadding={20}>
+      <VictoryChart domainPadding={20} title={title ?? ""}>
         {/* محور X */}
         <VictoryAxis
           tickValues={tickValues}
