@@ -7,18 +7,24 @@ const fetcher = async (url: string) => {
   const cookie = new Cookies();
 
   if (!cookie.get("school_token")) {
-    // Router.push("/auth/login");
+    Router.push("/auth/login");
     return;
   }
 
-  const response = callApi().get("/user", {
-    headers: {
-      Accept: "application/json",
-      Authorization: "Bearer " + cookie.get("school_token"),
-    },
-  });
+  console.log(cookie.get("school_token"));
 
-  return response;
+  try {
+    const response = callApi().get("/user", {
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + cookie.get("school_token"),
+      },
+    });
+    return response;
+  } catch (error) {
+    Router.push("/auth/login");
+    return;
+  }
 };
 export default function useAuth() {
   const { data, error } = useSWR("http://localhost:8000/api/user", fetcher);

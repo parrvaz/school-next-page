@@ -32,6 +32,9 @@ const callApi = (headers = {}) => {
         if (res.status === 422) {
           throw new ValidationError(res.data.errors);
         }
+        if (res.status === 401) {
+          Router.push("/auth/login");
+        }
       }
 
       Promise.reject(err);

@@ -56,15 +56,17 @@ const Filter = (props: FilterProps) => {
   return (
     <>
       <div className="flex flex-col w-full md:flex-row gap-4">
-        <MultiSelect
-          value={filterSelections.classrooms}
-          onChange={(e) => handleSelectionChange("classrooms", e.value)}
-          options={classroom}
-          optionLabel="title"
-          filter
-          placeholder="انتخاب کلاس"
-          className="md:w-1/3 bg-white border-2 hover:border-green-300 rounded-md"
-        />
+        {props.student.role !== "student" && (
+          <MultiSelect
+            value={filterSelections.classrooms}
+            onChange={(e) => handleSelectionChange("classrooms", e.value)}
+            options={classroom}
+            optionLabel="title"
+            filter
+            placeholder="انتخاب کلاس"
+            className="md:w-1/3 bg-white border-2 hover:border-green-300 rounded-md"
+          />
+        )}
         <MultiSelect
           value={filterSelections.courses}
           onChange={(e) => handleSelectionChange("courses", e.value)}

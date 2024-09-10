@@ -62,7 +62,15 @@ const TeacherStore: NextPageWithLayout = () => {
           placeholder="کد ملی"
           type="string"
         />
-
+        <FormInput
+          {...{ errors, control }}
+          className="w-full md:w-1/4"
+          name={`phone`}
+          placeholder="موبایل"
+          type="string"
+        />
+      </div>
+      <div className="flex flex-col w-full md:flex-row gap-4 mt-5">
         <FormInput
           {...{ errors, control }}
           className="w-full md:w-1/4"
@@ -70,8 +78,6 @@ const TeacherStore: NextPageWithLayout = () => {
           placeholder="مدرک"
           type="string"
         />
-      </div>
-      <div className="flex flex-col w-full md:flex-row gap-4 mt-5">
         <FormInput
           {...{ errors, control }}
           className="w-full md:w-1/4"
