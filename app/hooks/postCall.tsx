@@ -18,11 +18,7 @@ export async function PostCall(url: string, values: any) {
   });
 
   if (res.status === 200 || res.status === 201) {
-    console.log("fdaf");
-
     toast.success("عملیات با موفقیت انجام شد");
-    <ToastContainer />;
-
     return res;
   }
 }
