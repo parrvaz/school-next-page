@@ -46,6 +46,7 @@ const TeacherStore: NextPageWithLayout = () => {
           name={`firstName`}
           placeholder="نام"
           type="string"
+          rules={{ required: true }}
         />
         <FormInput
           {...{ errors, control }}
@@ -53,6 +54,7 @@ const TeacherStore: NextPageWithLayout = () => {
           name={`lastName`}
           placeholder="نام خانوادگی"
           type="string"
+          rules={{ required: true }}
         />
 
         <FormInput
@@ -61,6 +63,7 @@ const TeacherStore: NextPageWithLayout = () => {
           name={`nationalId`}
           placeholder="کد ملی"
           type="string"
+          rules={{ required: true }}
         />
         <FormInput
           {...{ errors, control }}
@@ -68,6 +71,7 @@ const TeacherStore: NextPageWithLayout = () => {
           name={`phone`}
           placeholder="موبایل"
           type="string"
+          rules={{ required: true }}
         />
       </div>
       <div className="flex flex-col w-full md:flex-row gap-4 mt-5">

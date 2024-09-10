@@ -11,6 +11,7 @@ type SelectType = {
   name: string;
   control: Control<any>; // eslint-disable-line
   rules?: Record<string, boolean>;
+  isRequired?: boolean;
 };
 
 const FormSelect: React.FC<SelectType> = (props) => {
@@ -18,6 +19,7 @@ const FormSelect: React.FC<SelectType> = (props) => {
     props;
   return (
     <div className={`relative ${className}`}>
+      {rules?.required && <span className="text-red-500">*</span>}{" "}
       <Controller
         {...{ control, name, rules }}
         render={({ field }): JSX.Element => (
@@ -42,7 +44,6 @@ const FormSelect: React.FC<SelectType> = (props) => {
           />
         )}
       />
-
       {handleError(errors?.[name])}
     </div>
   );

@@ -126,7 +126,7 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
         <div className="flex flex-col w-full md:flex-row gap-4">
           <FormSelect
             {...{ errors, control }}
-            className="w-full md:w-1/3"
+            className="w-full md:w-1/4"
             name="classroom"
             options={classOptions}
             rules={{ required: true }}
@@ -134,23 +134,12 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
           />
           <FormSelect
             {...{ errors, control }}
-            className="w-full md:w-1/3"
+            className="w-full md:w-1/4"
             name="course_id"
             options={ccourseOptions}
             rules={{ required: true }}
             placeholder="انتخاب درس"
           />
-
-          <DatePicker
-            value={dateValue}
-            onChange={handleDateChange}
-            calendar={persian} // تنظیم تقویم شمسی
-            locale={persian_fa} // تنظیم زبان فارسی
-            format="YYYY/MM/DD" // فرمت نمایش
-            inputClass="custom-input"
-          />
-        </div>
-        <div className="flex flex-col w-full md:flex-row gap-4 mt-5">
           <FormInput
             {...{ errors, control }}
             className="w-full md:w-1/4"
@@ -167,6 +156,18 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
             type="number"
             rules={{ required: true }}
           />
+        </div>
+        <div className="flex flex-col w-full md:flex-row gap-4 mt-5">
+          <DatePicker
+            value={dateValue}
+            onChange={handleDateChange}
+            calendar={persian} // تنظیم تقویم شمسی
+            locale={persian_fa} // تنظیم زبان فارسی
+            format="YYYY/MM/DD" // فرمت نمایش
+            inputClass="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-green-300 focus:border-green-300 sm:text-sm"
+            required={true}
+          />
+
           <FormRadio
             {...{ errors, control }}
             className="w-full md:w-1/2"
@@ -198,7 +199,7 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
 
         <div className="mt-10">
           {fields.map((field, index) => (
-            <div key={field.id} className="flex mb-5 gap-3 w-full">
+            <div key={field.id} className="flex  mb-5 gap-3 w-full ">
               <FormSelect
                 {...{ errors, control, rules }}
                 className="w-full md:w-1/2"
@@ -212,6 +213,7 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
                 className="w-full md:w-1/4"
                 name={`students[${index}].score`}
                 placeholder="نمره"
+                rules={{ required: true }}
               />
 
               <button

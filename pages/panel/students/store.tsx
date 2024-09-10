@@ -54,6 +54,7 @@ const StudentStore: NextPageWithLayout = () => {
             name={`firstName`}
             placeholder="نام"
             type="string"
+            rules={{ required: true }}
           />
           <FormInput
             {...{ errors, control }}
@@ -61,6 +62,7 @@ const StudentStore: NextPageWithLayout = () => {
             name={`lastName`}
             placeholder="نام خانوادگی"
             type="string"
+            rules={{ required: true }}
           />
 
           <FormInput
@@ -69,24 +71,7 @@ const StudentStore: NextPageWithLayout = () => {
             name={`nationalId`}
             placeholder="کد ملی"
             type="string"
-          />
-
-          <FormInput
-            {...{ errors, control }}
-            className="w-full md:w-1/4"
-            name={`birthday`}
-            placeholder="تاریخ تولد"
-            type="string"
-          />
-        </div>
-        <div className="flex flex-col w-full md:flex-row gap-4 mt-5">
-          <FormSelect
-            {...{ errors, control }}
-            className="w-full md:w-1/4"
-            name="classroom_id"
-            options={classOptions}
             rules={{ required: true }}
-            placeholder="انتخاب کلاس"
           />
           <FormInput
             {...{ errors, control }}
@@ -94,7 +79,18 @@ const StudentStore: NextPageWithLayout = () => {
             name={`phone`}
             placeholder="موبایل"
             type="string"
+            rules={{ required: true }}
           />
+        </div>
+        <div className="flex flex-col w-full md:flex-row gap-4 mt-5">
+          <FormInput
+            {...{ errors, control }}
+            className="w-full md:w-1/4"
+            name={`birthday`}
+            placeholder="تاریخ تولد"
+            type="string"
+          />
+
           <FormInput
             {...{ errors, control }}
             className="w-full md:w-1/4"
@@ -109,6 +105,13 @@ const StudentStore: NextPageWithLayout = () => {
             placeholder="مذهب"
             type="string"
           />
+          <FormInput
+            {...{ errors, control }}
+            className="w-full md:w-1/4"
+            name={`specialDisease`}
+            placeholder="بیماری های خاص"
+            type="string"
+          />
         </div>
         <div className="flex flex-col w-full md:flex-row gap-4 mt-5">
           <FormInput
@@ -120,12 +123,13 @@ const StudentStore: NextPageWithLayout = () => {
           />
         </div>
         <div className="flex flex-col w-full md:flex-row gap-4 mt-5">
-          <FormInput
+          <FormSelect
             {...{ errors, control }}
             className="w-full md:w-1/4"
-            name={`specialDisease`}
-            placeholder="بیماری های خاص"
-            type="string"
+            name="classroom_id"
+            options={classOptions}
+            rules={{ required: true }}
+            placeholder="انتخاب کلاس"
           />
           {/* <CheckBox
             {...{ errors, control }}
