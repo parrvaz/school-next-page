@@ -17,6 +17,7 @@ import { useForm } from "react-hook-form";
 import CheckBox from "@/app/components/shared/RHF/checkBox";
 import { PostCall } from "@/app/hooks/postCall";
 import Router from "next/router";
+import { ToastContainer } from "react-toastify";
 
 const TeacherStore: NextPageWithLayout = () => {
   const rules = { required: true };
@@ -90,10 +91,10 @@ const TeacherStore: NextPageWithLayout = () => {
           type="string"
         />
       </div>
-
       <button className="btn mt-4 mb-6 w-full md:w-1/4 bg-green-300 hover:bg-green-400">
         ثبت معلم
       </button>
+      <ToastContainer position="bottom-left" />
     </form>
   );
 };

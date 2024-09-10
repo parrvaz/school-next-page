@@ -5,6 +5,7 @@ import {
   ItemShortProps,
 } from "@/app/contracts/auth";
 import SelectBox from "../shared/form/selectBox";
+import { ToastContainer } from "react-toastify";
 
 interface InnerClassStoreProps {
   fields: ItemShortProps[];
@@ -40,6 +41,7 @@ const InnerClassStoreForm = (
         >
           ثبت کلاس
         </button>
+        <ToastContainer position="bottom-left" />
       </Form>
     </>
   );

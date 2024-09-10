@@ -34,6 +34,7 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import moment from "moment";
+import { ToastContainer } from "react-toastify";
 
 interface BigFormProps {
   url: string;
@@ -230,6 +231,7 @@ const BigForm: FC<BigFormProps> = ({ url }) => {
         <button className="btn mt-4 mb-6 w-full md:w-1/4 bg-green-300 hover:bg-green-400">
           ثبت آزمون
         </button>
+        <ToastContainer position="bottom-left" />
       </form>
     </LoadingBox>
   );

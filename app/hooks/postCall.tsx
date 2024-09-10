@@ -1,12 +1,12 @@
 import Cookies from "universal-cookie";
 import callApi from "../components/general/ApiCalls/callApi";
 import SuccessNotification from "../components/shared/notifications/successNotif";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export async function PostCall(
-  url: string,
-  values: any,
-  showNotification: () => void = () => {}
-) {
+export async function PostCall(url: string, values: any) {
+  console.log("here");
+
   const cookie = new Cookies();
   const headers = {
     Authorization: "Bearer " + cookie.get("school_token"),
@@ -16,8 +16,13 @@ export async function PostCall(
   const res = await callApi(headers).post(url, {
     ...values,
   });
-  if (res.status === 200) {
-    showNotification();
+
+  if (res.status === 200 || res.status === 201) {
+    console.log("fdaf");
+
+    toast.success("عملیات با موفقیت انجام شد");
+    <ToastContainer />;
+
     return res;
   }
 }
