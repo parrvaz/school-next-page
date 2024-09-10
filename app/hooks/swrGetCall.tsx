@@ -23,7 +23,11 @@ export function SWRGetCall(
   paginate: boolean = false,
   page: number = 1
 ) {
-  const { data, error } = useSWR({ url, paginate, page }, fetcherMethode);
+  const { data, error } = useSWR({ url, paginate, page }, fetcherMethode, {
+    revalidateOnFocus: false, // عدم ریکوئست مجدد هنگام فوکوس کردن صفحه
+    revalidateOnReconnect: false, // عدم ریکوئست مجدد هنگام برقراری اتصال
+    refreshInterval: 0, // عدم رفرش خودکار با تایمر
+  });
 
   return {
     data: data?.data?.data || null,

@@ -21,7 +21,7 @@ const ReportExamCount: NextPageWithLayout = () => {
     false
   );
 
-  if (isLoading) return <div>Loading...</div>;
+  // if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   const exam = data?.exam;
@@ -32,12 +32,17 @@ const ReportExamCount: NextPageWithLayout = () => {
   return (
     <>
       <Filter setFilterUrl={setFilterUrl} student={data.user} />
-      <ChartBar
-        exams={exam}
-        classScores={classScore}
-        tickFormat={tickFormat}
-        tickValues={tickValues}
-      />
+
+      {isLoading ? (
+        <div>ssssssss</div>
+      ) : (
+        <ChartBar
+          exams={exam}
+          classScores={classScore}
+          tickFormat={tickFormat}
+          tickValues={tickValues}
+        />
+      )}
     </>
   );
 };
