@@ -5,6 +5,7 @@ import { useState } from "react";
 import ChartBar from "@/app/components/shared/reports/chartbar";
 import ChartLine from "@/app/components/shared/reports/chartLine";
 import ChartArea from "@/app/components/shared/reports/chartArea";
+import ChartBubble from "@/app/components/shared/reports/chartBubble";
 
 const Panel: NextPageWithLayout = () => {
   const [filterUrl, setFilterUrl] = useState("");
@@ -30,7 +31,7 @@ const Panel: NextPageWithLayout = () => {
       </div>
       <div className="flex flex-col w-full md:flex-row gap-4">
         <ChartArea />
-        {/* <ChartArea /> */}
+        <ChartBubble />
       </div>
     </>
   );
