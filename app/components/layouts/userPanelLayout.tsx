@@ -251,6 +251,7 @@ const sidebarDataTeacher = {
     },
     {
       name: "/panel/classScores/store",
+      url: "/panel/exams/classScoreStore",
       lable: "ثبت پرسش شفاهی",
       icon: (
         <ChatBubbleBottomCenterIcon className="h-6 w-6 ml-2 text-gray-600" />
