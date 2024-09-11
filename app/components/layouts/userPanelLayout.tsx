@@ -160,7 +160,7 @@ const sidebarDataManager = {
         {
           name: "courseAssigne",
           lable: "تخصیص درس",
-          url: "/panel/courseAssigne",
+          url: "/panel/courses/assign",
         },
         {
           name: "/panel/courses/show",
