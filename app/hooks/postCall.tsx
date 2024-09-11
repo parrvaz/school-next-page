@@ -10,7 +10,7 @@ export async function PostCall(url: string, values: any) {
   const cookie = new Cookies();
   const headers = {
     Authorization: "Bearer " + cookie.get("school_token"),
-    grade: "bMIuudAP8DCUtHvuP22sy4523DPodj",
+    grade: "7YahuxCYR4qNPKLqbU34OqeNAC3fty",
   };
 
   const res = await callApi(headers).post(url, {

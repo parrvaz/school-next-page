@@ -12,7 +12,7 @@ export async function fetcherMethode(props: any) {
     headers: {
       Accept: "application/json",
       Authorization: "Bearer " + cookie.get("school_token"),
-      grade: "bMIuudAP8DCUtHvuP22sy4523DPodj",
+      grade: "7YahuxCYR4qNPKLqbU34OqeNAC3fty",
     },
   });
   return await response;
