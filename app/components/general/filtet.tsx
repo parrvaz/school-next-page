@@ -34,7 +34,7 @@ const Filter = (props: FilterProps) => {
       .map((item: any) => `student[]=${item.id}`)
       .join("&");
 
-    const url = `${cls}${crs}${std}`;
+    const url = `${cls}&${crs}&${std}`;
     props.setFilterUrl(url); // به روز رسانی URL با هر تغییر
   }, [filterSelections]); // اجرا هر زمان که مقادیر سلکت تغییر کنند
 
